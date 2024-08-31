@@ -33,7 +33,7 @@
 - [Spring Security](14.md)
 - [Spring Security OAuth2 认证以及 KeyCloak 用户服务](15.md)
 
-以下内容以 Spring 与 Java 为编程语言讲解，但本身都是多语言支持。
+以下内容以 Spring 与 Java 为基础讲解，但本身都是多语言支持。
 
 - [Rabbit MQ 消息队列](16.md)
 - [GraphQL](17.md)
@@ -41,6 +41,10 @@
 
 ## k8s 微服务技术
 
-- [其它语言后端框架与后端开发](19.md)
+- [后端框架一览](19.md)
+- [k8s 无状态服务基本部署](20.md)
+- [k8s 打包，网关与命令行工具](21.md)
+- [k8s 无状态服务](22.md)
+- [k8s 有状态服务](23.md)
 
 待续。
