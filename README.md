@@ -12,15 +12,15 @@
 
 ## Spring Cloud 微服务技术
 
-- [回到 Spring](1.md)
-- [回到 Java](2.md)
-- [Consul 作为服务注册中心](3.md)
-- [Consul 作为配置中心](4.md)
-- [LoadBalancer](5.md)
-- [Http Interface Client 与 OpenFeign](6.md)
-- [Resilience4j 服务熔断和降级](7.md)
-- [Resilience4j 限流](8.md)
-- [Micrometer 监控](9.md)
+- [回到 Spring](01.md)
+- [回到 Java](02.md)
+- [Consul 作为服务注册中心](03.md)
+- [Consul 作为配置中心](04.md)
+- [LoadBalancer](05.md)
+- [Http Interface Client 与 OpenFeign](06.md)
+- [Resilience4j 服务熔断和降级](07.md)
+- [Resilience4j 限流](08.md)
+- [Micrometer 监控](09.md)
 - [Spring Gateway 网关](10.md)
 - [Seata 分布式事务](11.md)
 
