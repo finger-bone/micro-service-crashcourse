@@ -1,0 +1,4 @@
+rootProject.name = 'auth'
+
+include 'main'
+include 'provider'

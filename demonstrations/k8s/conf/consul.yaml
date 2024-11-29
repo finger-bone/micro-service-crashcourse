@@ -1,0 +1,9 @@
+global:
+  name: consul
+connectInject:
+  enabled: true
+  apiGateway:
+    manageExternalCRDs: true
+ui:
+  service:
+    type: LoadBalancer

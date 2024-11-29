@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id "org.springframework.boot" version "3.2.6"
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        set("springCloudVersion", "2023.0.2")
+        set("springBootVersion", "3.2.6")
+        set("lombokVersion", "1.18.28")
+        set("springdocVersion", "2.5.0")
+        set("postgresqlVersion", "42.7.3")
+    }
+
+    group = 'io.github.fingerbone'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply {
+        plugin 'java'
+        plugin 'org.springframework.boot'
+        plugin 'io.spring.dependency-management'
+    }
+
+    java {
+        sourceCompatibility = JavaLanguageVersion.of(17)
+        targetCompatibility = JavaLanguageVersion.of(17)
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
+            mavenBom "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+            mavenBom "org.postgresql:postgresql:${postgresqlVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    dependencies {
+        implementation 'io.netty:netty-resolver-dns-native-macos'
+        implementation platform('io.micrometer:micrometer-tracing-bom:latest.release')
+        implementation 'io.micrometer:micrometer-tracing'
+        implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+        implementation 'io.micrometer:micrometer-observation'
+        implementation 'io.zipkin.reporter2:zipkin-reporter-brave' 
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    }
+}

@@ -1,0 +1,10 @@
+consul:
+  global:
+    name: consul
+  connectInject:
+    enabled: true
+  apiGateway:
+    enabled: true
+  ui:
+    service:
+      type: LoadBalancer

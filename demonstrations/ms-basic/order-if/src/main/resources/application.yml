@@ -1,0 +1,68 @@
+server.port: 8084
+
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+resilience4j:
+  bulkhead:
+    configs:
+      default:
+        max-concurrent-calls: 2
+        max-wait-duration: 1s
+    instances:
+      bh:
+        base-config: default
+
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 6
+        minimum-number-of-calls: 6
+        permitted-number-of-calls-in-half-open-state: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 60s
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 1000ms
+        record-exceptions:
+          - java.lang.Exception
+    instances:
+      bk:
+        base-config: default
+  
+  ratelimiter:
+    configs:
+      default:
+        timeout-duration: 2s
+        limit-for-period: 2
+    instances:
+      rl:
+        base-config: default
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+
+seata:
+  config:
+    consul:
+      server-addr: localhost:8500
+  registry:
+    consul:
+      server-addr: localhost:8500
+  tx-service-group: tx_group
+  service:
+    vgroup-mapping:
+      tx_group: seata-group
+    grouplist:
+      seata-group: 127.0.0.1:8091

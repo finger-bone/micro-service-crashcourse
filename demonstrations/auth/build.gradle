@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.8'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+allprojects {
+	apply {
+		plugin 'java'
+		plugin 'org.springframework.boot'
+		plugin 'io.spring.dependency-management'
+	}
+
+	group = 'io.github.fingerbone'
+	version = '0.0.1-SNAPSHOT'
+
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(17)
+		}
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	ext {
+		set('springBootVersion', "3.3.2")
+		set('springCloudVersion', "2023.0.3")
+	}
+
+	dependencies {
+		implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+		implementation platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+	}
+}
