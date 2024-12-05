@@ -1,0 +1,38 @@
+server.port: 8082
+
+spring:
+  application:
+    name: order-service
+  cloud:
+    openfeign:
+      httpclient:
+        hc5:
+          enabled: true
+      client:
+        config:
+          default:
+            connect-timeout: 5000
+            read-timeout: 5000
+            logger-level: basic
+      circuitbreaker:
+        enabled: true
+
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        minimum-number-of-calls: 10
+        permitted-number-of-calls-in-half-open-state: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 60s
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 1000ms
+        record-exceptions:
+          - java.lang.RuntimeException
+    instances:
+      bk:
+        baseConfig: default
+        slow-call-rate-threshold: 25

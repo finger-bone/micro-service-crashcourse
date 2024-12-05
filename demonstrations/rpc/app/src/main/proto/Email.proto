@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.github.fingerbone.demo";
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+}
+
+message PersonId {
+    int32 id = 1;
+}
+
+service EmailService {
+  rpc GetPersonById(PersonId) returns (Person);
+  rpc AddPerson(Person) returns (PersonId);
+}

@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    openfeign:
+      httpclient:
+        hc5:
+          enabled: true

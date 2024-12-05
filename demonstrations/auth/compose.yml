@@ -1,0 +1,9 @@
+services:
+  keyclock:
+    image: keycloak/keycloak
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=pwd
+    ports:
+      - 8080:8080
+    command: start-dev

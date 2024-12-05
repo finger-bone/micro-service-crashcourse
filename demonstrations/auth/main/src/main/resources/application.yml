@@ -1,0 +1,29 @@
+spring:
+  config:
+    name: main
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            clientId: demo
+            clientName: keycloak
+            provider: keycloak
+            redirectUri: http://localhost:8888/login/oauth2/code/keycloak
+            authorizationGrantType: authorization_code
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            authorizationUri: http://localhost:8080/realms/demo/protocol/openid-connect/auth
+            tokenUri: http://localhost:8080/realms/demo/protocol/openid-connect/token
+            jwkSetUri: http://localhost:8080/realms/demo/protocol/openid-connect/certs
+            userInfoUri: http://localhost:8080/realms/demo/protocol/openid-connect/userinfo
+            userNameAttribute: preferred_username
+
+
+server:
+  port: 8888
+
+
+jwt:
+  expiration-seconds: 3600

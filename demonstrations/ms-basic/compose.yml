@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:12.19
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: demo
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - 5432:5432
+  consul:
+    image: hashicorp/consul:1.19
+    ports:
+      - 8500:8500
+    volumes:
+      - ./consul-data:/consul/data
+      - ./consul-kv:/consul/kv
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+  seata-server:
+    image: seataio/seata-server:2.0.0
+    ports:
+      - "7091:7091"
+      - "8091:8091"
+    depends_on:
+      - postgres
+      - consul
+    volumes:
+      - ./seata/application.yml:/seata-server/resources/application.yml

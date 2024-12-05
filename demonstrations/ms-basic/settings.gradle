@@ -1,0 +1,7 @@
+rootProject.name = 'demo'
+include 'payment'
+include 'commons'
+include 'order'
+include 'order-feign'
+include 'order-if'
+include 'gateway'
