@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: cl
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      eager: true
+feign:
+  sentinel:
+    enabled: true
+server:
+  port: 8084

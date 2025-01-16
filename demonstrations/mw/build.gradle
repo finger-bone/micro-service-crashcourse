@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "3.4.1"
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    group = 'com.github.fingerbone'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply {
+        plugin 'java'
+        plugin 'org.springframework.boot'
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.36'
+        annotationProcessor 'org.projectlombok:lombok:1.18.36'
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3'
+        implementation platform('org.springframework.cloud:spring-cloud-dependencies:2023.0.3')
+        implementation 'org.springframework.boot:spring-boot-starter-web:3.3.7'
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2023.0.3.2'
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2023.0.3.2'
+        implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:4.2.0'
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0'
+        implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:2023.0.3.2'
+        implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer:4.2.0'
+
+    }
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+

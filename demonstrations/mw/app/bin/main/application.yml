@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: app
+  config:
+    import:
+    - nacos:d.yml
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848

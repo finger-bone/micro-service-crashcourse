@@ -7,6 +7,7 @@
 - Spring Cloud 微服务技术部分，讲解 Spring Cloud 微服务的实现。主要包括 Consul 作为服务注册中心和配置中心，LoadBalancer 进行负载均衡，Http Interface Client 与 OpenFeign 处理服务之间的调用，Resilience4j 服务熔断和限流，Micrometer 监控，Spring Gateway 网关，Seata 分布式事务。
 - Spring 进阶内容部分，讲解 Spring 的一些高级内容，以及一些后端开发的进阶内容在 Spring 中的实现。前者主要包括 Reactor 框架，Spring WebFlux，Spring Security，Spring Security OAuth2 认证以及 KeyCloak 用户服务。后者主要包括 Rabbit MQ 消息队列，GraphQL，gRPC。
 - k8s 微服务技术部分，讲解基于 k8s 的微服务实现，以及 Spring Cloud Kubernetes 的基础。
+- 这里再补充一些中间件的使用，包括 Nacos， Sentinel，kafka 高性能消息队列，Redis，Dubbo RPC，Nginx，Treafik。
 
 本文假设你已经会使用 docker 和 docker-compose，并能基于 Spring Boot 进行简单 REST 应用开发。
 
@@ -45,3 +46,13 @@
 - [k8s 无状态服务](notes/22.md)
 - [k8s 有状态服务](notes/23.md)
 - [服务网格](notes/24.md)
+
+## 中间件补充
+
+- [Nacos 服务治理](notes/25.md)
+- [Sentinel](notes/26.md)
+- [kafka 高性能消息队列](notes/27.md)
+- [Redis](notes/28.md)
+- [Dubbo RPC](notes/30.md)
+- [Nginx](notes/31.md)
+- [Treafik](notes/32.md)
