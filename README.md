@@ -53,6 +53,9 @@
 - [Sentinel](notes/26.md)
 - [kafka 高性能消息队列](notes/27.md)
 - [Redis](notes/28.md)
+- [OTel-LGTM](notes/29.md)
 - [Dubbo RPC](notes/30.md)
 - [Nginx](notes/31.md)
 - [Treafik](notes/32.md)
+- [Citus](notes/33.md)
+
