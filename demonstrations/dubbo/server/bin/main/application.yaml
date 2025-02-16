@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: dubbo-server
+dubbo:
+  registry:
+    address: nacos://localhost:8848

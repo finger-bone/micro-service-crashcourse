@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.2'
+}
+
+allprojects {
+    ext {
+        set("springBootVersion", "3.1.2")
+        set('dubboVersion', '3.3.0')
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    apply {
+        plugin 'java'
+        plugin 'org.springframework.boot'
+    }
+
+    dependencies {
+        implementation platform("org.apache.dubbo:dubbo-bom:${dubboVersion}")
+        implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+        implementation 'org.apache.dubbo:dubbo-spring-boot-starter'
+        implementation 'org.apache.dubbo:dubbo-nacos-spring-boot-starter'
+    }
+
+    java {
+        sourceCompatibility = JavaLanguageVersion.of(21)
+        targetCompatibility = JavaLanguageVersion.of(21)
+    }
+
+    group = 'com.github.fingerbone'
+    version = '1.0-SNAPSHOT'
+}

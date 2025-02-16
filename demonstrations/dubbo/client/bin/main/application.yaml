@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: dubbo-client
+server:
+  port: 8088
+dubbo:
+  application:
+    qos-port: 33333
+  registry:
+    address: nacos://localhost:8848
+  protocol:
+    port: 30880
