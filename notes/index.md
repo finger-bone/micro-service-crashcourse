@@ -14,48 +14,48 @@
 
 ## Spring Cloud 微服务技术
 
-- [回到 Spring](notes/01.md)
-- [回到 Java](notes/02.md)
-- [Consul 作为服务注册中心](notes/03.md)
-- [Consul 作为配置中心](notes/04.md)
-- [LoadBalancer](notes/05.md)
-- [Http Interface Client 与 OpenFeign](notes/06.md)
-- [Resilience4j 服务熔断和降级](notes/07.md)
-- [Resilience4j 限流](notes/08.md)
-- [Micrometer 监控](notes/09.md)
-- [Spring Gateway 网关](notes/10.md)
-- [Seata 分布式事务](notes/11.md)
+- [回到 Spring](01.md)
+- [回到 Java](02.md)
+- [Consul 作为服务注册中心](03.md)
+- [Consul 作为配置中心](04.md)
+- [LoadBalancer](05.md)
+- [Http Interface Client 与 OpenFeign](06.md)
+- [Resilience4j 服务熔断和降级](07.md)
+- [Resilience4j 限流](08.md)
+- [Micrometer 监控](09.md)
+- [Spring Gateway 网关](10.md)
+- [Seata 分布式事务](11.md)
 
 ## Spring 进阶内容
 
-- [Reactor 框架](notes/12.md)
-- [Spring WebFlux](notes/13.md)
-- [Spring Security](notes/14.md)
-- [Spring Security OAuth2 认证以及 KeyCloak 用户服务](notes/15.md)
+- [Reactor 框架](12.md)
+- [Spring WebFlux](13.md)
+- [Spring Security](14.md)
+- [Spring Security OAuth2 认证以及 KeyCloak 用户服务](15.md)
 
 以下内容以 Spring 与 Java 为基础讲解，但本身都是多语言支持。
 
-- [Rabbit MQ 消息队列](notes/16.md)
-- [GraphQL](notes/17.md)
-- [gRPC](notes/18.md)
+- [Rabbit MQ 消息队列](16.md)
+- [GraphQL](17.md)
+- [gRPC](18.md)
 
 ## k8s 微服务技术
 
-- [后端框架一览](notes/19.md)
-- [k8s 无状态服务基本部署](notes/20.md)
-- [helm 打包 istio 网关与 k8s 命令行工具](notes/21.md)
-- [k8s 无状态服务](notes/22.md)
-- [k8s 有状态服务](notes/23.md)
-- [服务网格](notes/24.md)
+- [后端框架一览](19.md)
+- [k8s 无状态服务基本部署](20.md)
+- [helm 打包 istio 网关与 k8s 命令行工具](21.md)
+- [k8s 无状态服务](22.md)
+- [k8s 有状态服务](23.md)
+- [服务网格](24.md)
 
 ## 中间件补充
 
-- [Nacos 服务治理](notes/25.md)
-- [Sentinel](notes/26.md)
-- [kafka 高性能消息队列](notes/27.md)
-- [Redis](notes/28.md)
-- [OTel-LGTM](notes/29.md)
-- [Dubbo RPC](notes/30.md)
-- [Nginx](notes/31.md)
-- [Treafik](notes/32.md)
-- [Citus](notes/33.md)
+- [Nacos 服务治理](25.md)
+- [Sentinel](26.md)
+- [kafka 高性能消息队列](27.md)
+- [Redis](28.md)
+- [OTel-LGTM](29.md)
+- [Dubbo RPC](30.md)
+- [Nginx](31.md)
+- [Treafik](32.md)
+- [Citus](33.md)
