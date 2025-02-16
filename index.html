@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="后端开发学习笔记 - Spring Cloud 与 k8s 微服务技术栈详解">
+        
+        <link rel="canonical" href="https://finger-bone.github.io/micro-service-crashcourse/">
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>微服务速成笔记</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">微服务速成笔记</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring Cloud 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="01/" class="dropdown-item">回到 Spring</a>
+</li>
+                                    
+<li>
+    <a href="02/" class="dropdown-item">回到 Java</a>
+</li>
+                                    
+<li>
+    <a href="03/" class="dropdown-item">Consul 作为服务注册中心</a>
+</li>
+                                    
+<li>
+    <a href="04/" class="dropdown-item">Consul 作为配置中心</a>
+</li>
+                                    
+<li>
+    <a href="05/" class="dropdown-item">LoadBalancer</a>
+</li>
+                                    
+<li>
+    <a href="06/" class="dropdown-item">Http Interface Client 与 OpenFeign</a>
+</li>
+                                    
+<li>
+    <a href="07/" class="dropdown-item">Resilience4j 服务熔断和降级</a>
+</li>
+                                    
+<li>
+    <a href="08/" class="dropdown-item">Resilience4j 限流</a>
+</li>
+                                    
+<li>
+    <a href="09/" class="dropdown-item">Micrometer 监控</a>
+</li>
+                                    
+<li>
+    <a href="10/" class="dropdown-item">Spring Gateway 网关</a>
+</li>
+                                    
+<li>
+    <a href="11/" class="dropdown-item">Seata 分布式事务</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring 进阶内容 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="12/" class="dropdown-item">Reactor 框架</a>
+</li>
+                                    
+<li>
+    <a href="13/" class="dropdown-item">Spring WebFlux</a>
+</li>
+                                    
+<li>
+    <a href="14/" class="dropdown-item">Spring Security</a>
+</li>
+                                    
+<li>
+    <a href="15/" class="dropdown-item">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a>
+</li>
+                                    
+<li>
+    <a href="16/" class="dropdown-item">Rabbit MQ 消息队列</a>
+</li>
+                                    
+<li>
+    <a href="17/" class="dropdown-item">GraphQL</a>
+</li>
+                                    
+<li>
+    <a href="18/" class="dropdown-item">gRPC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">k8s 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="19/" class="dropdown-item">后端框架一览</a>
+</li>
+                                    
+<li>
+    <a href="20/" class="dropdown-item">k8s 无状态服务基本部署</a>
+</li>
+                                    
+<li>
+    <a href="21/" class="dropdown-item">helm 打包 istio 网关与 k8s 命令行工具</a>
+</li>
+                                    
+<li>
+    <a href="22/" class="dropdown-item">k8s 无状态服务</a>
+</li>
+                                    
+<li>
+    <a href="23/" class="dropdown-item">k8s 有状态服务</a>
+</li>
+                                    
+<li>
+    <a href="24/" class="dropdown-item">服务网格</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">中间件补充 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="25/" class="dropdown-item">Nacos 服务治理</a>
+</li>
+                                    
+<li>
+    <a href="26/" class="dropdown-item">Sentinel</a>
+</li>
+                                    
+<li>
+    <a href="27/" class="dropdown-item">kafka 高性能消息队列</a>
+</li>
+                                    
+<li>
+    <a href="28/" class="dropdown-item">Redis</a>
+</li>
+                                    
+<li>
+    <a href="29/" class="dropdown-item">OTel-LGTM</a>
+</li>
+                                    
+<li>
+    <a href="30/" class="dropdown-item">Dubbo RPC</a>
+</li>
+                                    
+<li>
+    <a href="31.md" class="dropdown-item">Nginx</a>
+</li>
+                                    
+<li>
+    <a href="32.md" class="dropdown-item">Treafik</a>
+</li>
+                                    
+<li>
+    <a href="33.md" class="dropdown-item">Citus</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">微服务速成笔记</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#spring-cloud" class="nav-link">Spring Cloud 微服务技术</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#spring" class="nav-link">Spring 进阶内容</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#k8s" class="nav-link">k8s 微服务技术</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">中间件补充</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">微服务速成笔记</h1>
+<p>本文档是我在学习后端开发过程中的一些笔记，主要是一些基础知识和一些常用的技术栈的使用方法。本文档只作为了解和入门使用。</p>
+<p>包括三部分，Spring Cloud 微服务技术，Spring 进阶内容，k8s 微服务技术。</p>
+<ul>
+<li>Spring Cloud 微服务技术部分，讲解 Spring Cloud 微服务的实现。主要包括 Consul 作为服务注册中心和配置中心，LoadBalancer 进行负载均衡，Http Interface Client 与 OpenFeign 处理服务之间的调用，Resilience4j 服务熔断和限流，Micrometer 监控，Spring Gateway 网关，Seata 分布式事务。</li>
+<li>Spring 进阶内容部分，讲解 Spring 的一些高级内容，以及一些后端开发的进阶内容在 Spring 中的实现。前者主要包括 Reactor 框架，Spring WebFlux，Spring Security，Spring Security OAuth2 认证以及 KeyCloak 用户服务。后者主要包括 Rabbit MQ 消息队列，GraphQL，gRPC。</li>
+<li>k8s 微服务技术部分，讲解基于 k8s 的微服务实现，以及 Spring Cloud Kubernetes 的基础。</li>
+</ul>
+<p>最后是一些补充内容，包括 Nacos， Sentinel，kafka 高性能消息队列，Redis，OTel-LGTM，Dubbo RPC，Nginx，Treafik，Citus。</p>
+<p>本文假设你已经会使用 docker 和 docker-compose，并能基于 Spring Boot 进行简单 REST 应用开发。</p>
+<h2 id="spring-cloud">Spring Cloud 微服务技术</h2>
+<ul>
+<li><a href="notes/01.md">回到 Spring</a></li>
+<li><a href="notes/02.md">回到 Java</a></li>
+<li><a href="notes/03.md">Consul 作为服务注册中心</a></li>
+<li><a href="notes/04.md">Consul 作为配置中心</a></li>
+<li><a href="notes/05.md">LoadBalancer</a></li>
+<li><a href="notes/06.md">Http Interface Client 与 OpenFeign</a></li>
+<li><a href="notes/07.md">Resilience4j 服务熔断和降级</a></li>
+<li><a href="notes/08.md">Resilience4j 限流</a></li>
+<li><a href="notes/09.md">Micrometer 监控</a></li>
+<li><a href="notes/10.md">Spring Gateway 网关</a></li>
+<li><a href="notes/11.md">Seata 分布式事务</a></li>
+</ul>
+<h2 id="spring">Spring 进阶内容</h2>
+<ul>
+<li><a href="notes/12.md">Reactor 框架</a></li>
+<li><a href="notes/13.md">Spring WebFlux</a></li>
+<li><a href="notes/14.md">Spring Security</a></li>
+<li><a href="notes/15.md">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a></li>
+</ul>
+<p>以下内容以 Spring 与 Java 为基础讲解，但本身都是多语言支持。</p>
+<ul>
+<li><a href="notes/16.md">Rabbit MQ 消息队列</a></li>
+<li><a href="notes/17.md">GraphQL</a></li>
+<li><a href="notes/18.md">gRPC</a></li>
+</ul>
+<h2 id="k8s">k8s 微服务技术</h2>
+<ul>
+<li><a href="notes/19.md">后端框架一览</a></li>
+<li><a href="notes/20.md">k8s 无状态服务基本部署</a></li>
+<li><a href="notes/21.md">helm 打包 istio 网关与 k8s 命令行工具</a></li>
+<li><a href="notes/22.md">k8s 无状态服务</a></li>
+<li><a href="notes/23.md">k8s 有状态服务</a></li>
+<li><a href="notes/24.md">服务网格</a></li>
+</ul>
+<h2 id="_2">中间件补充</h2>
+<ul>
+<li><a href="notes/25.md">Nacos 服务治理</a></li>
+<li><a href="notes/26.md">Sentinel</a></li>
+<li><a href="notes/27.md">kafka 高性能消息队列</a></li>
+<li><a href="notes/28.md">Redis</a></li>
+<li><a href="notes/29.md">OTel-LGTM</a></li>
+<li><a href="notes/30.md">Dubbo RPC</a></li>
+<li><a href="notes/31.md">Nginx</a></li>
+<li><a href="notes/32.md">Treafik</a></li>
+<li><a href="notes/33.md">Citus</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.5.3
+Build Date UTC : 2025-02-16 10:18:23.701550+00:00
+-->
