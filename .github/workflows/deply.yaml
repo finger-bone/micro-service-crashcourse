@@ -26,7 +26,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install mkdocs==1.5.3
+          pip install mkdocs==1.5.3 mkdocs-bootswatch==1.1
 
       - name: Build Docs
         run: |
