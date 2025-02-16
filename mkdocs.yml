@@ -2,8 +2,7 @@ site_name: 微服务速成笔记
 site_url: https://finger-bone.github.io/micro-service-crashcourse/
 site_description: 后端开发学习笔记 - Spring Cloud 与 k8s 微服务技术栈详解
 
-theme:
-  name: litera
+theme: litera
 
 docs_dir: notes
 
