@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://finger-bone.github.io/micro-service-crashcourse/20/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>k8s 无状态服务基本部署 - 微服务速成笔记</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">微服务速成笔记</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring Cloud 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01/" class="dropdown-item">回到 Spring</a>
+</li>
+                                    
+<li>
+    <a href="../02/" class="dropdown-item">回到 Java</a>
+</li>
+                                    
+<li>
+    <a href="../03/" class="dropdown-item">Consul 作为服务注册中心</a>
+</li>
+                                    
+<li>
+    <a href="../04/" class="dropdown-item">Consul 作为配置中心</a>
+</li>
+                                    
+<li>
+    <a href="../05/" class="dropdown-item">LoadBalancer</a>
+</li>
+                                    
+<li>
+    <a href="../06/" class="dropdown-item">Http Interface Client 与 OpenFeign</a>
+</li>
+                                    
+<li>
+    <a href="../07/" class="dropdown-item">Resilience4j 服务熔断和降级</a>
+</li>
+                                    
+<li>
+    <a href="../08/" class="dropdown-item">Resilience4j 限流</a>
+</li>
+                                    
+<li>
+    <a href="../09/" class="dropdown-item">Micrometer 监控</a>
+</li>
+                                    
+<li>
+    <a href="../10/" class="dropdown-item">Spring Gateway 网关</a>
+</li>
+                                    
+<li>
+    <a href="../11/" class="dropdown-item">Seata 分布式事务</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring 进阶内容 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../12/" class="dropdown-item">Reactor 框架</a>
+</li>
+                                    
+<li>
+    <a href="../13/" class="dropdown-item">Spring WebFlux</a>
+</li>
+                                    
+<li>
+    <a href="../14/" class="dropdown-item">Spring Security</a>
+</li>
+                                    
+<li>
+    <a href="../15/" class="dropdown-item">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a>
+</li>
+                                    
+<li>
+    <a href="../16/" class="dropdown-item">Rabbit MQ 消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../17/" class="dropdown-item">GraphQL</a>
+</li>
+                                    
+<li>
+    <a href="../18/" class="dropdown-item">gRPC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">k8s 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../19/" class="dropdown-item">后端框架一览</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">k8s 无状态服务基本部署</a>
+</li>
+                                    
+<li>
+    <a href="../21/" class="dropdown-item">helm 打包 istio 网关与 k8s 命令行工具</a>
+</li>
+                                    
+<li>
+    <a href="../22/" class="dropdown-item">k8s 无状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../23/" class="dropdown-item">k8s 有状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../24/" class="dropdown-item">服务网格</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">中间件补充 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../25/" class="dropdown-item">Nacos 服务治理</a>
+</li>
+                                    
+<li>
+    <a href="../26/" class="dropdown-item">Sentinel</a>
+</li>
+                                    
+<li>
+    <a href="../27/" class="dropdown-item">kafka 高性能消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../28/" class="dropdown-item">Redis</a>
+</li>
+                                    
+<li>
+    <a href="../29/" class="dropdown-item">OTel-LGTM</a>
+</li>
+                                    
+<li>
+    <a href="../30/" class="dropdown-item">Dubbo RPC</a>
+</li>
+                                    
+<li>
+    <a href="../31.md" class="dropdown-item">Nginx</a>
+</li>
+                                    
+<li>
+    <a href="../32.md" class="dropdown-item">Treafik</a>
+</li>
+                                    
+<li>
+    <a href="../33.md" class="dropdown-item">Citus</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../19/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../21/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#ch20-k8s" class="nav-link">微服务速成 Ch20 k8s 无状态服务基本部署</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#minikube" class="nav-link">minikube</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#kubectl" class="nav-link">Kubectl</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#k8s" class="nav-link">k8s 微服务项目的实现</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#k8s_1" class="nav-link">k8s 基础无状态组件</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#k8s_2" class="nav-link">k8s 独立外部访问</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="ch20-k8s">微服务速成 Ch20 k8s 无状态服务基本部署</h1>
+<p>终于来到了本系列第二个重点，kubernetes，简称 k8s。</p>
+<p>通过我们前面的学习，我们了解了微服务架构的基本概念。但是，每个微服务都是一个独立的服务，它们需要独立部署、独立扩展、独立监控。</p>
+<p>容器化技术解决了服务的独立部署问题，而 k8s 则解决了服务的独立扩展、独立监控问题。k8s 就是一个容器的管理平台，它可以帮助我们管理大量的容器，让我们可以更加方便地部署、扩展、监控我们的服务。</p>
+<h2 id="minikube">minikube</h2>
+<p>k8s 有许多个实现，生产环境中就是使用的 k8s，但是在开发环境中，我们可以使用 minikube 来模拟一个 k8s 集群。k3s 是另一个轻量级的 k8s 实现，但是它需要依赖于 linux 虚拟机。</p>
+<p>不过，minikube 只能建立一个单节点的 k8s 集群，所以它只适合用来学习和开发。如果你要进入生产环境，请自行配置 k8s 集群。但是注意，这里我们学的所有内容都不会改变- 除了 minikube 限定的。最大的区别只不过是登陆集群时，你要使用 ssh 而不是 minikube ssh。此外，在访问服务时，你也可以直接访问，不需要 minikube 的一些特殊操作。总而言之，在生产环境中的使用其实更简单一些，而且被我们的所有内容包含。</p>
+<p>参考<a href="https://minikube.sigs.k8s.io/docs/start/">文档</a>安装即可。</p>
+<p>使用<code>minikube start</code>即可启动一个 k8s 集群。<code>minikube stop</code>可以停止集群。<code>minikube pause</code>可以暂停集群。<code>minikube unpause</code>可以恢复集群。<code>minikube delete</code>可以删除集群。</p>
+<p><code>minikube dashboard</code>可以打开 k8s 的 dashboard，可以在浏览器中查看集群的状态。这个命令行要保持运行，否则 dashboard 会关闭。</p>
+<p>minikube 本身也是一个 docker 容器，在 docker 中会显示出来。</p>
+<h2 id="kubectl">Kubectl</h2>
+<p>minikube 只是启动了一个容器集群，管理这个集群的工具是 kubectl。kubectl 是 k8s 的命令行工具，可以用来管理 k8s 集群。</p>
+<p>你可以使用<code>kubectl config current-context</code>来查看当前 kubectl 操作的集群。</p>
+<h2 id="k8s">k8s 微服务项目的实现</h2>
+<p>之前在 Spring Cloud 部分，我们要使用许多中间件，例如 Consul 等。这些中间件的功能很多都在 k8s 内置了。例如，k8s 有自己的服务发现机制，有自己的配置中心，有自己的负载均衡等等。</p>
+<p>现在我们先实现一个简单的微服务项目。这里我们用一个简单的带消息队列的项目来演示。注意，我们所有的项目都要变成 docker 容器。</p>
+<h3 id="producer">Producer</h3>
+<p>首先，我们创建一个生产者项目。这个项目会向消息队列发送消息。</p>
+<p>在 Javascript 中，使用<code>amqplib</code>库来操作 RabbitMQ。</p>
+<pre><code class="language-typescript">import { Hono } from 'hono'
+import { connect } from 'amqplib'
+
+const mq = &quot;amqp://user:password@message-queue:5672&quot;
+
+async function connectMq() {
+  const connection = await connect(mq)
+  const channel = await connection.createChannel()
+  await channel.assertQueue('food')
+  return channel
+}
+
+const channel = connectMq()
+
+const app = new Hono()
+
+app.get('/apple', async (c) =&gt; {
+  const ch = await channel
+  ch.sendToQueue('food', Buffer.from('apple'))
+  return c.json({ message: 'apple sent' })
+})
+
+app.get('/strawberry/:count?', async (c) =&gt; {
+  const ch = await channel
+  const count = Number.parseInt(c.req.param('count') || '1')
+  Array.from({
+    length: count
+  }).forEach(() =&gt; {
+    ch.sendToQueue('food', Buffer.from('strawberry'))
+  })
+  return c.json({ message: 'strawberry sent', count })
+})
+
+export default app
+</code></pre>
+<p>这里<code>:count?</code>表示 count 是可选的。我们可以访问<code>/strawberry</code>或者<code>/strawberry/3</code>。</p>
+<p>URL 里地址使用的<code>message-queue</code>，这个将是我们 k8s 集群中的消息队列的地址。我们会在后面创建这个消息队列。</p>
+<p>然后我们需要编写 Dockerfile。</p>
+<pre><code class="language-Dockerfile">FROM oven/bun:slim
+
+COPY . /app
+WORKDIR /app
+RUN bun install
+CMD bun run ./src/index.ts
+</code></pre>
+<h3 id="consumer">Consumer</h3>
+<p>然后我们创建一个消费者项目。这个项目会从消息队列中接收消息。</p>
+<pre><code class="language-typescript">import { Hono } from 'hono'
+import { connect } from 'amqplib'
+
+const mq = &quot;amqp://user:password@message-queue:5672&quot;
+
+async function connectMq() {
+  const connection = await connect(mq)
+  const channel = await connection.createChannel()
+  await channel.assertQueue('food')
+  return channel
+}
+
+const channelPromise = connectMq()
+const messageQueue: string[] = []
+
+const app = new Hono()
+
+app.get('/ping', async (c) =&gt; {
+  return c.json({ message: 'pong' })
+})
+
+channelPromise.then((ch) =&gt; {
+  // adds to the messageQueue array endlessly
+  ch.consume('food', (msg) =&gt; {
+    if (msg) {
+      messageQueue.push(msg.content.toString())
+    }
+  }, { noAck: true })
+})
+
+app.get('/food', async (c) =&gt; {
+  return c.json({ messageQueue })
+})
+
+export default app
+</code></pre>
+<p>这里的<code>ack</code>表示确认收到消息。这个步骤之前在 Spring 中被自动处理了。我们在这里开启<code>noAck</code>，代表不确认，直接接收。</p>
+<p>Dockerfile 与生产者一样。</p>
+<h2 id="k8s_1">k8s 基础无状态组件</h2>
+<p>上面我们完成了 Producer 和 Consumer 两个项目。我们需要将这两个项目组织到 k8s 中，并添加消息队列。在部署之前，我们需要了解 k8s 的一些基础无状态组件。各个组件的配置文件可见<a href="https://kubernetes.io/docs/concepts/workloads/">官方文档</a>。</p>
+<h3 id="pod">Pod</h3>
+<p>Pod 是 k8s 的最小单元。一个 Pod 可以包含一个或多个容器。在我们的例子中，Producer 和 Consumer 都是一个容器，所以我们可以将它们放在一个 Pod 中。</p>
+<p>k8s 的配置文件是 yaml 格式的。我们可以创建一个<code>pod.yaml</code>文件。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Pod
+metadata:
+  name: producer-consumer
+spec:
+  containers:
+  - name: producer
+    image: producer
+    ports:
+    - containerPort: 3000
+    resources:
+      requests:
+        memory: &quot;64Mi&quot;
+        cpu: &quot;250m&quot;
+      limits:
+        memory: &quot;128Mi&quot;
+        cpu: &quot;500m&quot;
+  - name: consumer
+    image: consumer
+    ports:
+    - containerPort: 3000
+    resources:
+      requests:
+        memory: &quot;64Mi&quot;
+        cpu: &quot;250m&quot;
+      limits:
+        memory: &quot;128Mi&quot;
+        cpu: &quot;500m&quot;
+</code></pre>
+<p>对于 k8s 配置的语法，我们可以参考<a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/">文档</a>。具体而言，一个 Pod 配置文件包含了 apiVersion, kind, metadata, spec 四个部分。</p>
+<ul>
+<li>apiVersion 表示 k8s 的 api 版本。</li>
+<li>kind 表示这个配置文件的类型，这里是 Pod。</li>
+<li>metadata 包含了一些元数据，例如 Pod 的名字。</li>
+<li>spec 包含了 Pod 的配置，例如容器的配置。</li>
+</ul>
+<p>对于不同的组件，我们要学习的就是 spec 部分的配置。在这里，我们配置了两个容器，一个是 Producer，一个是 Consumer。</p>
+<p>Pod 的 spec 如下，</p>
+<ul>
+<li>containers 表示容器的配置。这里我们配置了两个容器。</li>
+<li>name 表示容器的名字。</li>
+<li>image 表示容器的镜像。</li>
+<li>ports 表示容器使用的 port，这里只是进行说明，并不会自动打开端口。ports 是一个列表，每个元素可以是一个对象，包含 containerPort 和 protocol 两个属性。一般而言，我们只需要配置 containerPort。</li>
+<li>resources 表示容器的资源配置。requests 表示容器的最小资源，limits 表示容器的最大资源。这里我们配置了内存和 CPU 的资源。因为 k8s 支持自动扩展，所以我们需要配置资源，以避免资源耗尽。</li>
+</ul>
+<p>一般而言，我们不会直接使用 Pod，而是使用其它组件。其它组件会自动创建 Pod。</p>
+<p>注意，默认情况下，k8s 是从 registry 获取镜像，如果要使用本地镜像，需要使用<code>imagePullPolicy: Never</code>。并且手动使用<code>minikube image load im1 im2 im3</code>命令加载镜像。</p>
+<p>即，</p>
+<pre><code class="language-yaml">apiVersion: v1
+# ...
+    containers:
+    - name: producer
+        image: producer
+        imagePullPolicy: Never
+        # ...
+    - name: consumer
+        image: consumer
+        imagePullPolicy: Never
+        # ...
+</code></pre>
+<p>且要运行，<code>minikube image load producer:latest consumer:latest</code>，来加载镜像到 minikube 中。</p>
+<p>或者，使用<code>minikube image build -t producer .</code>来使用 minikube 的 docker 构建镜像。这样就不需要手动加载镜像了。</p>
+<p>如果要删除镜像，使用<code>minikube ssh</code>进入集群，然后用 docker 删除镜像即可。</p>
+<h3 id="replicaset">ReplicaSet</h3>
+<p>ReplicaSet 一般不会独立使用，而是和 Deployment 一起使用。ReplicaSet 会自动创建 Pod，并且可以自动扩展 Pod 的数量。创建 Deployment 时，ReplicaSet 会自动创建。</p>
+<p>因为我们不会直接使用 ReplicaSet，所以这里不再赘述其配置文件。</p>
+<h3 id="deployment">Deployment</h3>
+<p>Deployment 是 k8s 的一个控制器，它是一组 Pod 的抽象。Deployment 会自动创建 Pod，并且可以自动扩展 Pod 的数量。此外，Deployment 还有自动重试，回滚，热更新等功能。</p>
+<p>现在，我们为 Producer 和 Consumer 分别创建一个 Deployment。</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer
+spec:
+  selector:
+    matchLabels:
+      app: producer
+  template:
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+      - name: producer
+        image: producer
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: &quot;1&quot;
+            memory: &quot;512Mi&quot;
+</code></pre>
+<p>对于 Deployment，spec 有三个部分，</p>
+<ul>
+<li>replicas 表示 Pod 的数量。</li>
+<li>selector 表示选择器，用来选择哪些 Pod 属于这个 Deployment。这里我们选择 label 中 app 值为 producer 的 Pod。</li>
+<li>template 表示 Pod 的配置文件模版。这部分的配置和 Pod 配置一样。</li>
+</ul>
+<p>此外，我们还需要配置 RabbitMQ 和 consumer。</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mq
+spec:
+  selector:
+    matchLabels:
+      app: mq
+  template:
+    metadata:
+      labels:
+        app: mq
+    spec:
+      containers:
+      - name: mq
+        image: rabbitmq:4.0-rc-management
+        resources:
+          limits:
+            memory: &quot;128Mi&quot;
+            cpu: &quot;500m&quot;
+        ports:
+        - containerPort: 5672
+</code></pre>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mq
+spec:
+  selector:
+    matchLabels:
+      app: mq
+  template:
+    metadata:
+      labels:
+        app: mq
+    spec:
+      containers:
+      - name: mq
+        image: rabbitmq:4.0-rc-management
+        resources:
+          limits:
+            memory: &quot;128Mi&quot;
+            cpu: &quot;500m&quot;
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: user
+        - name: RABBITMQ_DEFAULT_PASS
+          value: password
+        ports:
+        - containerPort: 5672
+</code></pre>
+<p>注意，这里的语法与 docker-compose 类似但不完全一样。</p>
+<h3 id="service">Service</h3>
+<p>此前我们在 Spring Cloud 中，服务发现使用的是 Consul。Service 组件也有类似的功能。Service 是 k8s 的一个服务发现机制。Service 会自动创建一个虚拟 IP，用来代理一组 Pod。这样，我们就可以通过这个虚拟 IP 来访问这组 Pod。</p>
+<p>上文中，我们的 producer 和 consumer 都使用<code>amqp://user:password@message-queue:5672</code>来访问消息队列。因此我们创建一个名为<code>message-queue</code>的 Service。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: message-queue
+spec:
+  selector:
+    app: mq
+  ports:
+  - port: 5672
+    targetPort: 5672
+</code></pre>
+<p>这里 selector 选择了 label 中 app 值为 mq 的 Pod。ports 配置了端口映射。这样，通过访问<code>message-queue:5672</code>就可以访问到 mq Pod 的 5672 端口。如果我们有多个 mq Pod，k8s 会自动负载均衡。</p>
+<p>此外，如果你想暴露多个端口，每个端口都要有一个独特的 name。</p>
+<pre><code class="language-yaml"># ...
+  ports:
+  - name: amqp
+    port: 5672
+    targetPort: 5672
+  - name: management
+    port: 15672
+    targetPort: 15672
+</code></pre>
+<p>注意，所有的 deployment，如果需要访问，无论是内部还是外部，都需要创建 service。因此我们还需要为 producer 和 consumer 创建 service。</p>
+<p>Service 有一个 type 参数，可以加在 spec 中。type 有四个值，</p>
+<ul>
+<li>ClusterIP：默认值，创建一个虚拟 IP，只能在集群内部访问。</li>
+<li>NodePort：将集群的端口映射到 Node 的端口上，可以在集群外部访问。一般用于测试。</li>
+<li>LoadBalancer：创建一个负载均衡器，可以在集群外部访问。具体配置取决于云服务商。Minikube 支持这个类型，它的行为即可以通过 minikube 命令暴露端口。</li>
+<li>ExternalName：将 Service 映射到一个外部域名。</li>
+</ul>
+<p>之后我们会在部署时介绍它们的使用。现在我们先保留默认值。</p>
+<p>注意，我们在下文中修改 message queue 时，很可能不会修改 producer 和 consume。这时，程序里的 channel 会保持连接，但事实上已经失效。这会导致 producer 和 consumer 无法访问到新的 message queue。这时，我们需要重启 producer 和 consumer。重启方法是使用命令<code>kubectl rollout restart deployment producer</code>。</p>
+<h2 id="k8s_2">k8s 独立外部访问</h2>
+<p>现在，我们有了 6 个配置文件，分别是 producer, consumer, mq, producer-service, consumer-service, mq-service。我们可以使用<code>kubectl apply -f</code>命令来部署这些配置文件。该命令可在后面加文件夹名，会自动部署文件夹下的所有配置文件。或者加文件名，会部署单个文件。</p>
+<pre><code class="language-bash">kubectl apply -f .
+</code></pre>
+<p>现在，就可以在 dashboard 中看到 pod 和之前我们定义的所有的 service 等。</p>
+<p>但是，还有个重要问题需要解决：尽管 k8s 整个集群都在正常工作，我们却没有办法访问到 producer 和 consumer。这是因为我们的 service 是 ClusterIP 类型的，只能在集群内部访问。</p>
+<p>使用下面的方法，你可以检查出你的微服务是否正常工作。注意，反代，NodePort 只会用于测试环境，生产环境中，如果节点很少，可以使用 LoadBalancer，但是一般都应该使用网关。网关属于统一访问。</p>
+<h3 id="_1">反代</h3>
+<p>在开发模式中，可以使用<code>minikube service --all</code>来进行转发，这样就可以在本地访问到 k8s 中的服务。命令行上会显示出所有反向代理到本机的服务。或者，也可以使用<code>minikube service producer-service --url</code>来单独转发。</p>
+<h3 id="nodeport">NodePort</h3>
+<p>NodePort 类型的 service 可以将集群的端口映射到 Node 的端口上，可以在集群外部访问。一般用于测试。</p>
+<p>我们可以修改 service 的配置文件，将 type 改为 NodePort。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: producer-service
+spec:
+  selector:
+    app: producer
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30001
+  type: NodePort
+</code></pre>
+<p>理论上，只要访问 minikube 的 IP 地址（使用<code>minikube ip</code>命令）和 nodePort，就可以访问到 producer 服务。</p>
+<p>很可惜，在 MacOS 或 Windows 上，事情没这么简单。这是因为，minikube 本身就是一个容器，而在 MacOS 或 Windows 上，docker 是运行在虚拟机中的。</p>
+<p>现在，你可以使用<code>minikube ssh</code>进入 minikube 的虚拟机，然后使用<code>curl</code>命令访问<code>http://localhost:30001/apple</code>，这样是可以访问到 producer 服务的。</p>
+<p><code>minikube</code>官方是希望用户使用<code>minikube service producer-service --url</code>来访问的。但是正如我们前面所说的，开发环境中，ClusterIP 模式也能访问，只是会有 Warning。</p>
+<p>如果不使用 docker，而是使用其它的无隔离的，支持直通的虚拟机或容器，也可以直接访问。</p>
+<h3 id="loadbalancer">LoadBalancer</h3>
+<p>LoadBalancer 是 k8s 的标准暴露方式，可以在集群外部访问。可以用于生产环境。具体配置取决于云服务商。Minikube 支持这个类型。</p>
+<p>使用 LoadBalancer 时，服务提供者会自动创建一个负载均衡器，这个负载均衡器会将请求转发到集群中的 Pod。</p>
+<p>我们可以修改 service 的配置文件，将 type 改为 LoadBalancer。移除 NodePort。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: producer-service
+spec:
+  selector:
+    app: producer
+  ports:
+  - port: 3000
+    targetPort: 3000
+  type: LoadBalancer
+</code></pre>
+<p>然后，我们必须开启 tunnel，这和上面的 NodePort 原因一样，但是 minikube 为 load balancer 提供了 tunnel 功能，可以直接把虚拟机的端口映射到本地。</p>
+<pre><code class="language-bash">minikube tunnel
+</code></pre>
+<p>此时可以使用<code>kubectl get svc</code>来查看服务的状态，当对应服务 EXTERNAL-IP 变为一个 IP 地址时，就可以访问这个 IP 地址了。使用<code>{EXTERNAL-IP}:{PORT}/apple</code>即可访问。这里的端口是上文配置文件中 port 对应的端口。如果没有开启 tunnel，EXTERNAL-IP 会一直是 pending。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

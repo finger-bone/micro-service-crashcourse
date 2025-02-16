@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://finger-bone.github.io/micro-service-crashcourse/12/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Reactor 框架 - 微服务速成笔记</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">微服务速成笔记</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring Cloud 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01/" class="dropdown-item">回到 Spring</a>
+</li>
+                                    
+<li>
+    <a href="../02/" class="dropdown-item">回到 Java</a>
+</li>
+                                    
+<li>
+    <a href="../03/" class="dropdown-item">Consul 作为服务注册中心</a>
+</li>
+                                    
+<li>
+    <a href="../04/" class="dropdown-item">Consul 作为配置中心</a>
+</li>
+                                    
+<li>
+    <a href="../05/" class="dropdown-item">LoadBalancer</a>
+</li>
+                                    
+<li>
+    <a href="../06/" class="dropdown-item">Http Interface Client 与 OpenFeign</a>
+</li>
+                                    
+<li>
+    <a href="../07/" class="dropdown-item">Resilience4j 服务熔断和降级</a>
+</li>
+                                    
+<li>
+    <a href="../08/" class="dropdown-item">Resilience4j 限流</a>
+</li>
+                                    
+<li>
+    <a href="../09/" class="dropdown-item">Micrometer 监控</a>
+</li>
+                                    
+<li>
+    <a href="../10/" class="dropdown-item">Spring Gateway 网关</a>
+</li>
+                                    
+<li>
+    <a href="../11/" class="dropdown-item">Seata 分布式事务</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring 进阶内容 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Reactor 框架</a>
+</li>
+                                    
+<li>
+    <a href="../13/" class="dropdown-item">Spring WebFlux</a>
+</li>
+                                    
+<li>
+    <a href="../14/" class="dropdown-item">Spring Security</a>
+</li>
+                                    
+<li>
+    <a href="../15/" class="dropdown-item">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a>
+</li>
+                                    
+<li>
+    <a href="../16/" class="dropdown-item">Rabbit MQ 消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../17/" class="dropdown-item">GraphQL</a>
+</li>
+                                    
+<li>
+    <a href="../18/" class="dropdown-item">gRPC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">k8s 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../19/" class="dropdown-item">后端框架一览</a>
+</li>
+                                    
+<li>
+    <a href="../20/" class="dropdown-item">k8s 无状态服务基本部署</a>
+</li>
+                                    
+<li>
+    <a href="../21/" class="dropdown-item">helm 打包 istio 网关与 k8s 命令行工具</a>
+</li>
+                                    
+<li>
+    <a href="../22/" class="dropdown-item">k8s 无状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../23/" class="dropdown-item">k8s 有状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../24/" class="dropdown-item">服务网格</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">中间件补充 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../25/" class="dropdown-item">Nacos 服务治理</a>
+</li>
+                                    
+<li>
+    <a href="../26/" class="dropdown-item">Sentinel</a>
+</li>
+                                    
+<li>
+    <a href="../27/" class="dropdown-item">kafka 高性能消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../28/" class="dropdown-item">Redis</a>
+</li>
+                                    
+<li>
+    <a href="../29/" class="dropdown-item">OTel-LGTM</a>
+</li>
+                                    
+<li>
+    <a href="../30/" class="dropdown-item">Dubbo RPC</a>
+</li>
+                                    
+<li>
+    <a href="../31.md" class="dropdown-item">Nginx</a>
+</li>
+                                    
+<li>
+    <a href="../32.md" class="dropdown-item">Treafik</a>
+</li>
+                                    
+<li>
+    <a href="../33.md" class="dropdown-item">Citus</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../11/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../13/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#spring-ch12-reactor" class="nav-link">Spring 速成 Ch12 Reactor</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#webflux" class="nav-link">WebFlux 简介</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#java" class="nav-link">Java 标准库异步编程</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">响应式编程的核心概念</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="spring-ch12-reactor">Spring 速成 Ch12 Reactor</h1>
+<p>Spring Cloud 微服务的内容告一段落。在 Spring Cloud 部分，我们学习了使用 Consul，Load Balancer，Spring Interface Client 与 OpenFeign，Resilience4j，MicroMeter，Gateway，Seata。这是现在 Spring Cloud 官方最推荐的一套组件。诚然，还有其它一些组件也很重要，主要是 Spring Cloud Alibaba 的组件，Nacos 与 Sentinel，Seata 也属于 Spring Cloud Alibaba 的组件，但是我们已经介绍了它。Nacos 和 Sentinel 的使用方法与 Consul 和 Resilience4j 类似，所以这里不再介绍，有了前面的基础，你可以很容易的学习它们。</p>
+<p>现在，我们将学习一些 Spring 的高级内容，之后再回到微服务，学习基于 kubernetes 的微服务。</p>
+<p>这些内容主要包括，</p>
+<ul>
+<li>WebFlux，异步的 Spring Web</li>
+<li>Spring Security，Spring 安全框架；KeyCloak，OIDC 认证服务器</li>
+<li>消息队列，Rabbit MQ</li>
+<li>非 HTTP 协议，包括 graphQL 和 RPC，RPC 将基于 gRPC 进行介绍</li>
+</ul>
+<p>首先，我们学习 WebFlux。Spring 框架我们之前已经学过，因此我们重点学习 Reactor，它是 WebFlux 的基础。</p>
+<h2 id="webflux">WebFlux 简介</h2>
+<p>前面我们讲过，Spring 自己是一个基于 Bean 的框架。而 Spring Web 是我们实际开发 Web 程序使用的框架，它是个基于 Servlet 和 Spring 的框架，它有自己的 Spring Boot Starter，可以很方便的使用。</p>
+<p>其实，Spring Web 的全名是 Spring Web MVC，但 MVC 已经没人关心了。</p>
+<p>但是，与 Spring Web 并行的还有一套框架，叫做 Spring WebFlux。Spring WebFlux 是一个基于 Reactor 的框架，它是一个异步的框架，可以用于构建响应式的 Web 应用程序。它也是基于 Spring 容器，但是它的异步引擎是 Reactor，而服务器是 Netty。Reactor 为 WebFlux 提供了异步的能力，Netty 为 WebFlux 提供了异步的服务器。</p>
+<p>相比于 Spring Web，Spring WebFlux 有更高的并发能力。然而，由于 WebFlux 较为年轻，Spring 的整个生态都是围绕 Spring Web 的，所以 Spring WebFlux 可能会遇到一些不兼容问题，但并不严重。但整体而言，坐拥整个 Spring 生态的 Spring WebFlux 是一个很有前途的框架。</p>
+<h2 id="java">Java 标准库异步编程</h2>
+<p>我们先看为什么要引入 Reactor。</p>
+<p>Java 在 8 之后引入了 Future，但是 Future 设计的太差了，以至于你必须手动实现 EventLoop，例如，</p>
+<pre><code class="language-java">ExecutorService executor = Executors.newFixedThreadPool(1);
+Future&lt;Integer&gt; future = executor.submit(() -&gt; {
+    Thread.sleep(1000);
+    return 1;
+});
+while (!future.isDone()) {
+    System.out.println(&quot;Waiting...&quot;);
+    Thread.sleep(100);
+}
+System.out.println(future.get());
+</code></pre>
+<p>这是一个非常糟糕的设计因此，Java 在 8 之后引入了 CompletableFuture，它比 Future 好用多了，例如，</p>
+<pre><code class="language-java">CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -&gt; {
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    return 1;
+});
+future.thenAccept(System.out::println);
+</code></pre>
+<p>显然，这个已经很像其它语言的 Promise 了。但是很可惜，Java 至今还没有引入 async-await，因此经典的回调地狱还是会出现。</p>
+<p>不过，回调地狱不只有一种解决方案，除了大部分语言采用的 async-await，还有一种解决方案，就是响应式编程，这就是 Reactor。</p>
+<p>不过，Java 在后续的 Java 9 之后引入了 Flow，它设计的和 Reactor 类似。具体而言，它的效果是，</p>
+<pre><code class="language-java">Flow.Publisher&lt;Integer&gt; publisher = subscriber -&gt; {
+    subscriber.onNext(1);
+    subscriber.onComplete();
+};
+Flow.Subscriber&lt;Integer&gt; subscriber = new Flow.Subscriber&lt;&gt;() {
+    @Override
+    public void onSubscribe(Flow.Subscription subscription) {
+        subscription.request(1);
+    }
+
+    @Override
+    public void onNext(Integer item) {
+        System.out.println(item);
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        throwable.printStackTrace();
+    }
+
+    @Override
+    public void onComplete() {
+        System.out.println(&quot;Complete&quot;);
+    }
+};
+publisher.subscribe(subscriber);
+</code></pre>
+<p>多少有点太啰嗦了。而 Reactor 利用函数式编程的特性，可以更简单的实现这个功能，像是，</p>
+<pre><code class="language-java">Flux.just(1).subscribe(System.out::println);
+</code></pre>
+<p>要简单得多。这就是为什么尽管有了 Flow，但是 Reactor 仍然有市场。</p>
+<h2 id="_1">响应式编程的核心概念</h2>
+<p>响应式编程本质就是经典的流式编程，但是它与传统的流式编程有一些不同。</p>
+<ul>
+<li>响应式编程是异步的，而不是同步的。这意味着你可以在等待一个操作完成的时候做其它事情。而在流式编程中，本质只是一个循环。</li>
+<li>响应式编程是基于事件的，而不是基于数据的。这意味着你可以在数据到达的时候处理数据，而不是等待数据到达。</li>
+<li>响应式编程是惰性的，而不是及时的。这意味着你可以在需要的时候才处理数据，而不是一次性处理所有数据。</li>
+</ul>
+<p>响应式编程有两个核心概念，一个是 Publisher，一个是 Subscriber。两者在 Reactor 中都是 Mono 和 Flux，而这两个东西本质上是函数式编程中的 Monad。</p>
+<p>下面关于 Monad 的内容，如果不理解可以跳过，不影响工程上的知识和使用。</p>
+<h3 id="monad">Monad</h3>
+<p>Monad 是函数式编程中的一个概念。尽管有些教程写的很复杂，但是其实很简单。Monad 本质上是一种映射。我们用两个空间来诠释 Monad，真值空间和像空间。真值空间是我们熟悉的空间，它包含了所有的真值。而像空间是 Monad 的空间，它包含了 Monad 的值。</p>
+<p>Monad 是一个包含三个关键要素的结构：</p>
+<ul>
+<li>类型构造器（Type Constructor）：将普通的值（真值）映射到像空间中。这类似于在 Java 中的泛型类型，如<code>Optional&lt;T&gt;</code>，它将一个值包裹在一个容器内。类型构造器本质上定义了一个新的数据类型，这个类型包含了原始值及其附加的计算上下文。</li>
+<li>unit（也称为 return 或 pure）：一个函数，用于将真值空间中的元素转换为像空间中的 Monad。换句话说，它将普通的值放入 Monad 中。例如，在 Optional 中，你可以使用<code>Optional.of</code>来将一个值放入 Optional Monad 中。</li>
+<li>bind（也称为 flatMap，或<code>&gt;&gt;=</code>）：一个函数，用于对像空间中的 Monad 进行操作。</li>
+</ul>
+<p>也就是说，Monad 先把某个值打包，然后对这个打包好的值进行运算，然后再取出来。这个打包好的值就是像空间中的 Monad。</p>
+<p>这种操作看起来可能没有什么意义，但下面这个例子可能会让你明白它的方便之处。即有时候，真值空间内的运算可能没有全局的算子，即没有全局的函数来处理所有情况。还使用 Optional 为例子，例如用户输入一个数字，你想要对这个数字开根号，但是用户可能输入了负数，或者是空值。这时候，你就需要对这个数字进行检查，然后再进行开根号。这个检查的过程就是 Monad 的 bind 过程。</p>
+<p>例如，下面的代码可以完成这个 Nomad 的过程。</p>
+<pre><code class="language-java">class NomadOfRoot {
+    private final Double value;
+    private final boolean isNegative;
+
+    public NomadOfRoot(Double value) {
+        this.value = value;
+        this.isNegative = value &lt; 0;
+    }
+
+    public NomadOfRoot root() {
+        if (isNegative || value == null) {
+            return new NomadOfRoot(null);
+        } else {
+            return new NomadOfRoot((Double) Math.sqrt(value));
+        }
+    }
+
+    public NomaOfRoot add(NomadOfRoot other) {
+        if (value == null || other.value == null) {
+            return new NomadOfRoot(null);
+        } else {
+            return new NomadOfRoot(value + other.value);
+        }
+    }
+
+    public Double getValue() {
+        return value;
+    }
+}
+
+Double result = (
+    new NomadOfRoot(1.0)
+    .add(new NomadOfRoot(2.0).root())
+    .root()
+    .add(new NomadOfRoot(-3.0))
+    .root()
+    .getValue()
+);
+</code></pre>
+<p>这样子，如果我们的所有接口都返回 NomadOfRoot，那么我们就不用再做额外的检查了，因为 NomadOfRoot 会自动检查并返回正确的值。</p>
+<p>目前我们的操作还很少。但是如果要链式调用几十个方法呢？这时候 Monad 就显得很方便了。</p>
+<h3 id="monad_1">响应式编程中的 Monad</h3>
+<p>响应式编程本质就是将数据包装成异步 Monad，这个 Monad 要么处于 Pending 阶段，没有求值；要么已经完成，然后对这个 Monad 进行操作。这个操作是一个管线，它是一个链式的操作，每个操作都是一个 Monad，这个 Monad 会在数据到达的时候进行操作。</p>
+<p>在 Reactor 中，这个 Monad 是 Flux 类，Mono 则是 Flux 的特例。对比上面对 Monad 的介绍，我们列出 Flux 的三个要素：</p>
+<ul>
+<li>类型构造器：使用<code>Flux.just</code>来构造一个 Flux。但注意，Flux 保存的是一个列表，而不是一个值，因此，例如<code>Flux&lt;Integer&gt;</code>，可以保存多个 Integer，要这样写<code>Flux.just(1, 2, 3)</code>。</li>
+<li>unit：要把 Flux 对象变成普通的值，可以使用<code>block</code>方法，例如<code>Flux.just(1).blockFirst()</code>。</li>
+<li>bind：Flux 的 bind 是<code>map</code>，<code>flatMap</code>，<code>filter</code>等方法。</li>
+</ul>
+<p>而 Mono 类是一种特殊的 Flux，它只能保存一个值。显然，Flux 可以被拆成很多个 Mono，而 Mono 也可以被合并成一个 Flux。前者使用<code>next</code>方法，后者使用<code>concat</code>方法。</p>
+<h3 id="publisher-subscribe-pipe">Publisher， Subscribe 与 Pipe</h3>
+<p>Publisher 与 Subscriber 是 Reactor 的两个核心接口。Publisher 是一个生产者，它可以生产数据。Subscriber 是一个消费者，它可以消费数据。简单的来说，Publisher 必须产生 Flux，而 Subscriber 必须消费 Flux。</p>
+<p>例如，下面的代码是一个 Publisher，</p>
+<pre><code class="language-java">Flux&lt;Integer&gt; publisher = Flux.just(1, 2, 3);
+</code></pre>
+<p>而下面的代码是一个 Subscriber，</p>
+<pre><code class="language-java">publisher.subscribe(System.out::println);
+</code></pre>
+<p>当然，把所有数据取出来也算是一种消费，这时候可以使用<code>block</code>方法。</p>
+<pre><code class="language-java">publisher.blockLast();
+</code></pre>
+<p>而数据之间的转换，则是通过管线方法（Pipe）来实现的。具体而言，<code>map</code>方法是最常用的 Pipe 方法，它可以对数据进行转换。例如，</p>
+<pre><code class="language-java">Flux&lt;Integer&gt; publisher = Flux.just(1, 2, 3);
+List&lt;Integer&gt; l = publisher.map(i -&gt; i * 2).collectList().block();
+</code></pre>
+<p>综上，一个完整的管线就是，publisher 从一般的数据转换成 Flux，若干 Pipe 方法对数据进行转换，从 Flux 转成 Flux，最后通过 subscribe方法消费数据。</p>
+<p>常用的内建 Publisher 有，</p>
+<ul>
+<li><code>Flux.just</code>：将一个或若干个元素转换成 Flux。</li>
+<li><code>Flux.fromArray</code>：将一个数组转换成 Flux。</li>
+<li><code>Flux.fromIterable</code>：将一个 Iterable 转换成 Flux。</li>
+<li><code>Flux.fromStream</code>：将一个 Stream 转换成 Flux。</li>
+<li><code>Flux.range</code>：将一个范围内的整数转换成 Flux。</li>
+<li><code>Mono.just</code>：将一个元素转换成 Mono。</li>
+<li><code>Mono.empty</code>：将一个空值转换成 Mono。</li>
+<li><code>Mono.error</code>：将一个错误转换成 Mono。</li>
+</ul>
+<p>常用的 Pipe 方法有，</p>
+<ul>
+<li><code>flux.map(func)</code>：对 Flux 中的每个元素，执行函数，将返回值收集成新的 Flux。</li>
+<li><code>flux.flatMap(func)</code>：对 Flux 中的每个元素，执行函数，函数应当返回一个元素列表，最后会把每个元素列表连接成一个新的 Flux。</li>
+<li><code>flux.filter(func)</code>：对 Flux 中的每个元素，执行函数，函数应当返回一个布尔值，最后会把所有返回 true 的元素收集成新的 Flux。</li>
+<li><code>flux.collectList()</code>：将 Flux 中的所有元素收集成一个列表的 Mono。即<code>Flux&lt;T&gt;</code>变成<code>Mono&lt;List&lt;T&gt;&gt;</code>。</li>
+<li><code>flux.first()</code>：将 Flux 中的第一个元素收集成一个 Mono。</li>
+<li><code>flux.last()</code>：将 Flux 中的最后一个元素收集成一个 Mono。</li>
+<li><code>flux.index(index)</code>：将 Flux 中的第 index 个元素收集成一个 Mono。</li>
+<li><code>mono.map(func)</code>：对 Mono 中的元素，执行函数，将返回值收集成新的 Mono。</li>
+</ul>
+<p>常用的 Subscribe 方法有，</p>
+<ul>
+<li><code>flux.subscribe()</code>：订阅一个 Flux，但是不做任何事情。</li>
+<li><code>flux.subscribe(func)</code>：订阅一个 Flux，对每个元素执行函数。</li>
+<li><code>flux.blockLast()</code>：订阅一个 Flux，取出最后一个元素。</li>
+<li><code>flux.blockFirst()</code>：订阅一个 Flux，取出第一个元素。</li>
+<li><code>flux.block()</code>：订阅一个 Flux，取出所有元素。</li>
+<li><code>mono.block()</code>：订阅一个 Mono，取出元素。</li>
+<li><code>mono.subscribe()</code>：订阅一个 Mono，但是不做任何事情。</li>
+<li><code>mono.subscribe(func)</code>：订阅一个 Mono，对元素执行函数。</li>
+</ul>
+<p>注意，上面的所有方法只是声明管线，并不会真正执行管线。只有 Subscribe 方法才会真正执行管线。执行时，各个元素是异步执行的。</p>
+<p>此外，Subscribe 方法不能嵌套。一旦数值进入了 Monad，只能使用 Pipe 方法进行处理。例如，在 Webflux 中，框架会自动为你 Subscibe Monad，因此不能在代码中使用 Subscribe 方法，处理时必须使用响应式语法。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

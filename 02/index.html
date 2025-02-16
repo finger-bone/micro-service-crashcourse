@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://finger-bone.github.io/micro-service-crashcourse/02/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>回到 Java - 微服务速成笔记</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">微服务速成笔记</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring Cloud 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01/" class="dropdown-item">回到 Spring</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">回到 Java</a>
+</li>
+                                    
+<li>
+    <a href="../03/" class="dropdown-item">Consul 作为服务注册中心</a>
+</li>
+                                    
+<li>
+    <a href="../04/" class="dropdown-item">Consul 作为配置中心</a>
+</li>
+                                    
+<li>
+    <a href="../05/" class="dropdown-item">LoadBalancer</a>
+</li>
+                                    
+<li>
+    <a href="../06/" class="dropdown-item">Http Interface Client 与 OpenFeign</a>
+</li>
+                                    
+<li>
+    <a href="../07/" class="dropdown-item">Resilience4j 服务熔断和降级</a>
+</li>
+                                    
+<li>
+    <a href="../08/" class="dropdown-item">Resilience4j 限流</a>
+</li>
+                                    
+<li>
+    <a href="../09/" class="dropdown-item">Micrometer 监控</a>
+</li>
+                                    
+<li>
+    <a href="../10/" class="dropdown-item">Spring Gateway 网关</a>
+</li>
+                                    
+<li>
+    <a href="../11/" class="dropdown-item">Seata 分布式事务</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring 进阶内容 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../12/" class="dropdown-item">Reactor 框架</a>
+</li>
+                                    
+<li>
+    <a href="../13/" class="dropdown-item">Spring WebFlux</a>
+</li>
+                                    
+<li>
+    <a href="../14/" class="dropdown-item">Spring Security</a>
+</li>
+                                    
+<li>
+    <a href="../15/" class="dropdown-item">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a>
+</li>
+                                    
+<li>
+    <a href="../16/" class="dropdown-item">Rabbit MQ 消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../17/" class="dropdown-item">GraphQL</a>
+</li>
+                                    
+<li>
+    <a href="../18/" class="dropdown-item">gRPC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">k8s 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../19/" class="dropdown-item">后端框架一览</a>
+</li>
+                                    
+<li>
+    <a href="../20/" class="dropdown-item">k8s 无状态服务基本部署</a>
+</li>
+                                    
+<li>
+    <a href="../21/" class="dropdown-item">helm 打包 istio 网关与 k8s 命令行工具</a>
+</li>
+                                    
+<li>
+    <a href="../22/" class="dropdown-item">k8s 无状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../23/" class="dropdown-item">k8s 有状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../24/" class="dropdown-item">服务网格</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">中间件补充 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../25/" class="dropdown-item">Nacos 服务治理</a>
+</li>
+                                    
+<li>
+    <a href="../26/" class="dropdown-item">Sentinel</a>
+</li>
+                                    
+<li>
+    <a href="../27/" class="dropdown-item">kafka 高性能消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../28/" class="dropdown-item">Redis</a>
+</li>
+                                    
+<li>
+    <a href="../29/" class="dropdown-item">OTel-LGTM</a>
+</li>
+                                    
+<li>
+    <a href="../30/" class="dropdown-item">Dubbo RPC</a>
+</li>
+                                    
+<li>
+    <a href="../31.md" class="dropdown-item">Nginx</a>
+</li>
+                                    
+<li>
+    <a href="../32.md" class="dropdown-item">Treafik</a>
+</li>
+                                    
+<li>
+    <a href="../33.md" class="dropdown-item">Citus</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../01/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../03/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#spring-ch2-java" class="nav-link">Spring 速成 Ch2 回到 Java</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">简介</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#java" class="nav-link">Java 编译</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#java_1" class="nav-link">Java 项目管理工具</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#groovy" class="nav-link">Groovy 语言</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gradle" class="nav-link">Gradle 配置</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#gradle_1" class="nav-link">Gradle 配置</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#nonnull" class="nav-link">@NonNull 注解</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="spring-ch2-java">Spring 速成 Ch2 回到 Java</h1>
+<h2 id="_1">简介</h2>
+<p>第二章了，但我们还是不讲 Spring Cloud，而是要回到 Java 基础。具体而言，是 Java 工程的编译和构建，因为 Spring Cloud 需要手动配置多项目和子项目嵌套，所以我们需要了解 Java 工程的构建。</p>
+<p>这里我们讲使用 gradle，但是大家都知道，事实上常用的是 maven。不要担心，因为之后我们会讲到，gradle 和 maven 的配置是完全一致的，只是一个是用 dsl，例如 groovy，一个是用 xml。</p>
+<p>此外我们还将讲一个偏门的话题，@NonNull 注解，这个注解可以帮助我们在编译时检查空指针异常。</p>
+<h2 id="java">Java 编译</h2>
+<p>复习一下，Java 编译的命令是：</p>
+<pre><code class="language-bash">javac -d out src/main/java/com/example/Hello.java
+</code></pre>
+<p>javac 会输出编译好的 class 文件到 out 目录。如果要运行这个 class 文件，可以使用 java 命令：</p>
+<pre><code class="language-bash">java -cp out com.example.Hello
+</code></pre>
+<p>但是，如果有多个 class 文件，就需要手动指定 classpath，这样很麻烦。所以我们需要一个工具来帮助我们管理依赖。</p>
+<h2 id="java_1">Java 项目管理工具</h2>
+<p>Java 项目管理工具事实上只有 gradle 和 maven 有人用，其他的都是小众，例如 sbt（我个人比较喜欢 scala）。</p>
+<p>Maven 和 Gradle 都是基于项目的，即项目是一个整体，有一个 pom.xml 或 build.gradle 文件来描述项目的依赖和构建方式。两者在本质上都是定义了一个 project object model，即项目对象模型，而且两者定义的模型是一样的，只是表现形式不同，下面我们会看到。</p>
+<h2 id="groovy">Groovy 语言</h2>
+<p>Gradle 使用 groovy 语言来定义项目，groovy 是一种 JVM 语言，和 Java 一样，但是语法更简洁，更适合 DSL。</p>
+<p>虽然听起来，为了使用 java 的包管理工具，去学一门编程语言是个，很有魄力的决定。但我们只需要学习四个方面：变量，闭包，函数调用，字符串插值。</p>
+<h3 id="_2">变量</h3>
+<p>Groovy 是动态类型，使用 def 关键字定义变量。例如：</p>
+<pre><code class="language-groovy">def name = 'world'
+</code></pre>
+<p>很简单，之后重新赋值即，</p>
+<pre><code class="language-groovy">name = 'Groovy'
+</code></pre>
+<h3 id="_3">闭包</h3>
+<p>Groovy 中，闭包是一种匿名函数，可以直接赋值给变量，也可以作为参数传递。例如：</p>
+<pre><code class="language-groovy">def myClosure = { println 'Hello, world!' }
+</code></pre>
+<p>当然，作为 dsl 时，一般会省掉 def 关键字，直接写闭包。例如：</p>
+<pre><code class="language-groovy">plugins {
+    id 'java'
+    id &quot;org.springframework.boot&quot; version &quot;3.2.6&quot;
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+</code></pre>
+<p>这样就定义了一个闭包，大括号包裹了一段代码。</p>
+<p>闭包的最后一行会被当成返回值，所以可以省略 return 关键字。例如：</p>
+<pre><code class="language-groovy">def myClosure = { 'Hello, world!' }
+</code></pre>
+<h3 id="_4">函数调用</h3>
+<p>Groovy 的函数调用与其它常见语言的唯一区别是，可以省略括号。例如：</p>
+<pre><code class="language-groovy">println 'Hello, world!'
+</code></pre>
+<p>在上面的例子，即，</p>
+<pre><code class="language-groovy">plugins {
+    id 'java'
+    id &quot;org.springframework.boot&quot; version &quot;3.2.6&quot;
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+</code></pre>
+<p>里面的 id 和 version 都是函数调用，但是省略了括号。要把它们都写全，就是：</p>
+<pre><code class="language-groovy">plugins {
+    id('java')
+    id(&quot;org.springframework.boot&quot;).version(&quot;3.2.6&quot;)
+    id('io.spring.dependency-management').version('1.1.5')
+}
+</code></pre>
+<h3 id="_5">字符串插值</h3>
+<p>Groovy 的字符串插值和 JS 一样，使用 <code>${}</code>。例如：</p>
+<pre><code class="language-groovy">def name = 'world'
+println &quot;Hello, ${name}!&quot;
+</code></pre>
+<p>注意，单引号创建的是 java.lang.String 对象，而双引号创建的是 groovy.lang.GString 对象，只有 GString 才支持插值。</p>
+<h2 id="gradle">Gradle 配置</h2>
+<p>讲完了 groovy 语言，你就能看出来，gradle 和 maven 的配置是一样的，只是一个是 xml，一个是 groovy。下面是一个简单的 gradle 配置文件：</p>
+<pre><code class="language-groovy">plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
+</code></pre>
+<p>这里的 implementation 是用来限制依赖范围的，和 maven 的 compile 类似。</p>
+<p>对于 maven，这个配置文件是这样的：</p>
+<pre><code class="language-xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; 
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;your-artifact-id&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+
+    &lt;properties&gt;
+        &lt;java.version&gt;17&lt;/java.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;central&lt;/id&gt;
+            &lt;url&gt;https://repo.maven.apache.org/maven2&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;/project&gt;
+</code></pre>
+<p>看出来了吗？如果把一个 groovy 脚本当成一个对象的话，那么这个对象的属性就是 maven 的配置文件所创建的对象。两者是一样的，只是表现形式不同。所以之后我们虽然以 gradle 为基础讲解，但是除了在 dependency 中 scope 的写法有一点点不同，其他的都是一样的。所以我们只讲 gradle，但是你可以很容易地转换到 maven。</p>
+<h2 id="gradle_1">Gradle 配置</h2>
+<p>我们来逐字段讲解一下 gradle 配置文件。</p>
+<h3 id="plugins">plugins 闭包</h3>
+<p>plugins 闭包用来声明插件。插件是 gradle 的一个重要概念，它可以帮助我们简化配置，例如上面的 java 插件，就帮我们配置了 java 编译的一些默认行为。</p>
+<p>这个 scope 里可以使用 id 函数和 version 函数。</p>
+<p>例如，如果我们要使用 spring boot 插件，就可以这样：</p>
+<pre><code class="language-groovy">plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.6'
+}
+</code></pre>
+<p>Java 插件是 gradle 自带的，不需要额外声明版本。</p>
+<p>此外，在 gradle 中，启动 spring boot 使用 gradle bootRun 命令，而不是 maven 的 spring-boot:run 命令。</p>
+<h3 id="group-version">group 和 version 变量</h3>
+<p>group 和 version 变量用来声明项目的 groupId 和 version。这两个变量是 maven 的概念，gradle 也支持。groupId 是项目的组织名，version 是项目的版本号。</p>
+<p>例如，</p>
+<pre><code class="language-groovy">group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+</code></pre>
+<h3 id="java_2">java 闭包</h3>
+<p>java 闭包用来配置 java 插件的一些行为。这里我们配置了 toolchain，即工具链。这个闭包里可以定义 toolchain 闭包，这个闭包里可以定义 languageVersion 变量，即语言版本。</p>
+<p>例如，</p>
+<pre><code class="language-groovy">java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+</code></pre>
+<p>这里我们指定了 java 17 作为我们的语言版本。</p>
+<h3 id="repositories">repositories 闭包</h3>
+<p>一般使用 mavenCentral() 就可以，这个函数会自动添加 maven 中央仓库。如果用别的仓库，可以使用 mavenLocal()、jcenter() 等等。</p>
+<h3 id="dependencies">dependencies 闭包</h3>
+<p>dependencies 闭包用来声明项目的依赖。</p>
+<p>常用的函数有，</p>
+<ul>
+<li>implementation，编译时依赖，相当于 maven 的 compile</li>
+<li>api，编译时依赖，相当于 maven 的 compile，但是 api 和 implementation 的区别是，api 会传递依赖，implementation 不会。即如果 A 依赖 B，B 依赖 C，如果 A 依赖 B 的 api，那么 A 也会依赖 C，如果 A 依赖 B 的 implementation，那么 A 不会依赖 C。</li>
+<li>runtimeOnly，运行时依赖，相当于 maven 的 runtime</li>
+<li>testImplementation，测试编译时依赖，相当于 maven 的 testCompile</li>
+<li>testRuntimeOnly，测试运行时依赖，相当于 maven 的 testRuntime</li>
+</ul>
+<p>如果要引用其它项目，使用 project 函数。例如，</p>
+<pre><code class="language-groovy">implementation project(&quot;:commons&quot;)
+</code></pre>
+<h3 id="ext">ext 闭包</h3>
+<p>ext 闭包用来定义一些额外的变量。例如，</p>
+<pre><code class="language-groovy">ext {
+    set('springVersion', '5.3.9')
+}
+</code></pre>
+<p>之后可以用字符串插值的方式引用这个变量，例如，</p>
+<pre><code class="language-groovy">dependencies {
+    implementation &quot;org.springframework:spring-context:${springVersion}&quot;
+}
+</code></pre>
+<h3 id="allprojects-subprojects">allprojects 与 subprojects 闭包</h3>
+<p>这两个闭包的内容会被传递到子项目中。例如，</p>
+<pre><code class="language-groovy">allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+</code></pre>
+<p>这样，所有的子项目都会自动添加 maven 中央仓库。subprojects 只会传递到子项目，而 allprojects 会传递到所有项目，包括根项目。</p>
+<p>注意，闭包里无法使用 plugin 闭包，需要使用 apply 闭包来添加 plugin。</p>
+<pre><code class="language-groovy">plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.8'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+allprojects {
+    apply {
+        plugin 'java'
+        plugin 'org.springframework.boot'
+        plugin 'io.spring.dependency-management'
+    }
+}
+</code></pre>
+<h3 id="settingsgradle">settings.gradle 文件</h3>
+<p>根项目和子项目是基于 settings.gradle 文件来定义的。在根项目的 settings.gradle 文件中，可以使用 include 函数来定义子项目。例如，</p>
+<pre><code class="language-groovy">rootProject.name = 'demo'
+include 'payment'
+include 'commons'
+include 'order'
+include 'order-feign'
+</code></pre>
+<p>这样，就定义了四个子项目，分别是 payment、commons、order 和 order-feign。子项目之间可以互相依赖，但要使用根项目启动。</p>
+<h3 id="spring-dependency-management">Spring Dependency Management 插件</h3>
+<p>Spring Dependency Management 插件是 Spring Boot 的一个插件，它可以帮助我们管理依赖的版本。我们需要在 plugins 里声明这个插件。</p>
+<p>之后，使用 dependencyManagement 闭包来声明依赖的版本。例如，</p>
+<pre><code class="language-groovy">plugins {
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom &quot;org.springframework.boot:spring-boot-dependencies:3.2.6&quot;
+    }
+}
+</code></pre>
+<p>这样，之后我们就可以省略版本号，只写 groupId 和 artifactId。例如，</p>
+<pre><code class="language-groovy">dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
+</code></pre>
+<p>这样，我们就不用担心在根项目和子项目之间同步版本号了。例如，如果我在根项目中这样配置，</p>
+<pre><code class="language-groovy">allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom &quot;org.springframework.boot:spring-boot-dependencies:3.2.6&quot;
+            mavenBom &quot;org.postgresql:postgresql:${postgresqlVersion}&quot;
+        }
+    }
+}
+</code></pre>
+<p>之后，如果有子项目中依赖 postgres，只需要，</p>
+<pre><code class="language-groovy">dependencies {
+    implementation 'org.postgresql:postgresql'
+}
+</code></pre>
+<p>这样就不用担心版本号不一致的问题了。</p>
+<p>此外要注意，mavenBom 定义的不只是一个依赖的版本（可以是），还可以是一组依赖的版本。因此，上面我们定义了 Spring Cloud 和 Spring Boot 版本后，不需要再对每个依赖声明版本号。</p>
+<p>但是，其实在 gradle 中，最正统的方法是使用 platform，这是 gradle 内建的方法，不需要依赖。即下面这样，</p>
+<pre><code class="language-groovy">implementation platform('org.springframework.boot:spring-boot-dependencies:2.7.8')
+</code></pre>
+<p>platform 函数的效果和 mavenBom 一样。但是鉴于大部分的文档都直接提供 mavenBom，而platform 需要自己去找，所以我们这里就直接用 mavenBom 了。</p>
+<h2 id="nonnull">@NonNull 注解</h2>
+<p>空指针异常一直是个很头疼的问题，Java 8 引入了 Optional 类型，但是使用起来很麻烦。Java 9 引入了 @NonNull 注解，这个注解可以帮助我们在编译时检查空指针异常。这个注解在<code>jakarta.annotation.Nonnull</code>里，使用这个注解后，可以在编辑器里开启空指针检查。例如在 vscode，把<code>java.compile.nullAnalysis.nonnull: [jakarta.annotation.Nonnull]</code>即可。当然，一般启动一个 Java 项目时，右下角会有一个提示框，问用户是否开启空指针检查。</p>
+<p>与此同时，还有一个<code>jakarta.annotation.Nullable</code>注解，用来标记可以为空的变量。</p>
+<p>这个注解只是提供给编辑器使用，不会影响运行时的行为。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

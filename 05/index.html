@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://finger-bone.github.io/micro-service-crashcourse/05/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>LoadBalancer - 微服务速成笔记</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">微服务速成笔记</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring Cloud 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01/" class="dropdown-item">回到 Spring</a>
+</li>
+                                    
+<li>
+    <a href="../02/" class="dropdown-item">回到 Java</a>
+</li>
+                                    
+<li>
+    <a href="../03/" class="dropdown-item">Consul 作为服务注册中心</a>
+</li>
+                                    
+<li>
+    <a href="../04/" class="dropdown-item">Consul 作为配置中心</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">LoadBalancer</a>
+</li>
+                                    
+<li>
+    <a href="../06/" class="dropdown-item">Http Interface Client 与 OpenFeign</a>
+</li>
+                                    
+<li>
+    <a href="../07/" class="dropdown-item">Resilience4j 服务熔断和降级</a>
+</li>
+                                    
+<li>
+    <a href="../08/" class="dropdown-item">Resilience4j 限流</a>
+</li>
+                                    
+<li>
+    <a href="../09/" class="dropdown-item">Micrometer 监控</a>
+</li>
+                                    
+<li>
+    <a href="../10/" class="dropdown-item">Spring Gateway 网关</a>
+</li>
+                                    
+<li>
+    <a href="../11/" class="dropdown-item">Seata 分布式事务</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring 进阶内容 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../12/" class="dropdown-item">Reactor 框架</a>
+</li>
+                                    
+<li>
+    <a href="../13/" class="dropdown-item">Spring WebFlux</a>
+</li>
+                                    
+<li>
+    <a href="../14/" class="dropdown-item">Spring Security</a>
+</li>
+                                    
+<li>
+    <a href="../15/" class="dropdown-item">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a>
+</li>
+                                    
+<li>
+    <a href="../16/" class="dropdown-item">Rabbit MQ 消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../17/" class="dropdown-item">GraphQL</a>
+</li>
+                                    
+<li>
+    <a href="../18/" class="dropdown-item">gRPC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">k8s 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../19/" class="dropdown-item">后端框架一览</a>
+</li>
+                                    
+<li>
+    <a href="../20/" class="dropdown-item">k8s 无状态服务基本部署</a>
+</li>
+                                    
+<li>
+    <a href="../21/" class="dropdown-item">helm 打包 istio 网关与 k8s 命令行工具</a>
+</li>
+                                    
+<li>
+    <a href="../22/" class="dropdown-item">k8s 无状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../23/" class="dropdown-item">k8s 有状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../24/" class="dropdown-item">服务网格</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">中间件补充 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../25/" class="dropdown-item">Nacos 服务治理</a>
+</li>
+                                    
+<li>
+    <a href="../26/" class="dropdown-item">Sentinel</a>
+</li>
+                                    
+<li>
+    <a href="../27/" class="dropdown-item">kafka 高性能消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../28/" class="dropdown-item">Redis</a>
+</li>
+                                    
+<li>
+    <a href="../29/" class="dropdown-item">OTel-LGTM</a>
+</li>
+                                    
+<li>
+    <a href="../30/" class="dropdown-item">Dubbo RPC</a>
+</li>
+                                    
+<li>
+    <a href="../31.md" class="dropdown-item">Nginx</a>
+</li>
+                                    
+<li>
+    <a href="../32.md" class="dropdown-item">Treafik</a>
+</li>
+                                    
+<li>
+    <a href="../33.md" class="dropdown-item">Citus</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../04/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../06/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#spring-cloud-ch5-load-balancer" class="nav-link">Spring Cloud 速成 Ch5 Load Balancer</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#spring-cloud-loadbalancer" class="nav-link">Spring Cloud LoadBalancer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">负载平衡算法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="spring-cloud-ch5-load-balancer">Spring Cloud 速成 Ch5 Load Balancer</h1>
+<p>在微服务架构中，服务调用的时候，我们通常会使用负载均衡器来均衡各个服务的负载。Spring Cloud 为我们提供了负载均衡的功能，我们只需要在服务调用的地方加上 <code>@LoadBalanced</code> 注解即可。</p>
+<p>之前我们使用过<code>RestTemplate</code>来调用服务，并且加入了<code>@LoadBalanced</code>注解。但是，就像之前所说的，<code>@LoadBalanced</code>注解只是一个接口，需要一个实现类才能生效。</p>
+<p>这个<code>@LoadBalanced</code>属于 Spring Cloud Commons 组件，这个组件提供了一些接口，但是没有实现类。因此要看的文档是<a href="https://docs.spring.io/spring-cloud-commons/docs/current/reference/html/#spring-cloud-loadbalancer">这篇</a>。</p>
+<h2 id="spring-cloud-loadbalancer">Spring Cloud LoadBalancer</h2>
+<p>同样的，这个组件也有它的 Sprint Boot，因此要引入<code>org.springframework.cloud:spring-cloud-starter-loadbalancer</code>。</p>
+<p>然后我们可以使用<code>LoadBalancerClient</code>来获取一个服务的实例，例如，</p>
+<pre><code class="language-java">@Autowired
+private LoadBalancerClient loadBalancerClient;
+
+@GetMapping(&quot;/payment/lb&quot;)
+public String getPaymentLB() {
+    ServiceInstance serviceInstance = loadBalancerClient.choose(&quot;payment-service&quot;);
+    return serviceInstance.getUri().toString();
+}
+</code></pre>
+<p>之前我们在<code>RestTemplate</code>中使用<code>@LoadBalanced</code>注解，就是在<code>RestTemplate</code>访问前，先通过<code>LoadBalancerClient</code>获取一个服务实例，然后再访问这个实例。</p>
+<h2 id="_1">负载平衡算法</h2>
+<p>负载平衡其实有两种，一种是客户端负载均衡，一种是服务端负载均衡。</p>
+<p>客户端负载平衡即是客户端自己去选择一个服务实例，然后访问这个实例。服务端负载均衡则是服务端的网关接受请求，然后再转发给一个服务实例。这里使用的就是客户端负载均衡，而服务端负载均衡可以用 Nginx 来实现。</p>
+<p>默认使用的算法是轮询算法，即假设有 N 个服务实例，每次请求都会选择第 (N + 1) % N 个服务实例。</p>
+<p>要切换算法，则要修改 <code>ReactorLoadBalancer&lt;ServiceInstance&gt;</code> 的配置，例如，</p>
+<pre><code class="language-java">public class CustomLoadBalancerConfiguration {
+
+    @Bean
+    ReactorLoadBalancer&lt;ServiceInstance&gt; randomLoadBalancer(Environment environment,
+            LoadBalancerClientFactory loadBalancerClientFactory) {
+        String name = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
+        return new RandomLoadBalancer(loadBalancerClientFactory
+                .getLazyProvider(name, ServiceInstanceListSupplier.class),
+                name);
+    }
+}
+</code></pre>
+<p>这样就切换到了随机算法。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

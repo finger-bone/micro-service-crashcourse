@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://finger-bone.github.io/micro-service-crashcourse/03/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Consul 作为服务注册中心 - 微服务速成笔记</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">微服务速成笔记</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring Cloud 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01/" class="dropdown-item">回到 Spring</a>
+</li>
+                                    
+<li>
+    <a href="../02/" class="dropdown-item">回到 Java</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Consul 作为服务注册中心</a>
+</li>
+                                    
+<li>
+    <a href="../04/" class="dropdown-item">Consul 作为配置中心</a>
+</li>
+                                    
+<li>
+    <a href="../05/" class="dropdown-item">LoadBalancer</a>
+</li>
+                                    
+<li>
+    <a href="../06/" class="dropdown-item">Http Interface Client 与 OpenFeign</a>
+</li>
+                                    
+<li>
+    <a href="../07/" class="dropdown-item">Resilience4j 服务熔断和降级</a>
+</li>
+                                    
+<li>
+    <a href="../08/" class="dropdown-item">Resilience4j 限流</a>
+</li>
+                                    
+<li>
+    <a href="../09/" class="dropdown-item">Micrometer 监控</a>
+</li>
+                                    
+<li>
+    <a href="../10/" class="dropdown-item">Spring Gateway 网关</a>
+</li>
+                                    
+<li>
+    <a href="../11/" class="dropdown-item">Seata 分布式事务</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring 进阶内容 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../12/" class="dropdown-item">Reactor 框架</a>
+</li>
+                                    
+<li>
+    <a href="../13/" class="dropdown-item">Spring WebFlux</a>
+</li>
+                                    
+<li>
+    <a href="../14/" class="dropdown-item">Spring Security</a>
+</li>
+                                    
+<li>
+    <a href="../15/" class="dropdown-item">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a>
+</li>
+                                    
+<li>
+    <a href="../16/" class="dropdown-item">Rabbit MQ 消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../17/" class="dropdown-item">GraphQL</a>
+</li>
+                                    
+<li>
+    <a href="../18/" class="dropdown-item">gRPC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">k8s 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../19/" class="dropdown-item">后端框架一览</a>
+</li>
+                                    
+<li>
+    <a href="../20/" class="dropdown-item">k8s 无状态服务基本部署</a>
+</li>
+                                    
+<li>
+    <a href="../21/" class="dropdown-item">helm 打包 istio 网关与 k8s 命令行工具</a>
+</li>
+                                    
+<li>
+    <a href="../22/" class="dropdown-item">k8s 无状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../23/" class="dropdown-item">k8s 有状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../24/" class="dropdown-item">服务网格</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">中间件补充 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../25/" class="dropdown-item">Nacos 服务治理</a>
+</li>
+                                    
+<li>
+    <a href="../26/" class="dropdown-item">Sentinel</a>
+</li>
+                                    
+<li>
+    <a href="../27/" class="dropdown-item">kafka 高性能消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../28/" class="dropdown-item">Redis</a>
+</li>
+                                    
+<li>
+    <a href="../29/" class="dropdown-item">OTel-LGTM</a>
+</li>
+                                    
+<li>
+    <a href="../30/" class="dropdown-item">Dubbo RPC</a>
+</li>
+                                    
+<li>
+    <a href="../31.md" class="dropdown-item">Nginx</a>
+</li>
+                                    
+<li>
+    <a href="../32.md" class="dropdown-item">Treafik</a>
+</li>
+                                    
+<li>
+    <a href="../33.md" class="dropdown-item">Citus</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../02/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../04/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#spring-cloud-ch3-consul" class="nav-link">Spring Cloud 速成 Ch3 Consul 服务注册与发现</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">微服务架构</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#docker" class="nav-link">配置 docker 网络</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#consul" class="nav-link">Consul 服务注册与发现</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="spring-cloud-ch3-consul">Spring Cloud 速成 Ch3 Consul 服务注册与发现</h1>
+<p>第三章开始，我们开始学习 Spring Cloud，因此标题也改成了 Spring Cloud 速成。</p>
+<p>本笔记 Spring Cloud 部分参考了尚硅谷阳老师的<a href="https://www.bilibili.com/video/BV1gW421P7RD">教程</a>。Spring Cloud 先讲 Consul，Load Balancer，Spring Interface Client 与 OpenFeign，Resilience4j，MicroMeter，Gateway，Seata，WebFlux，Spring Security，KeyCloak，Rabbit MQ，GraphQL，gRPC 然后是 k8s。尽管上面部分技术严格讲并不属于微服务，但它们属于 Spring 的进阶内容，这里就一起讲了。</p>
+<h2 id="_1">微服务架构</h2>
+<p>微服务架构是一种架构风格，它是一种将单一应用程序开发为一组小型服务的方法，每个服务运行在自己的进程中，服务之间通过 HTTP 或者消息队列通信。每个服务都有自己的数据库，独立部署，独立升级。</p>
+<p>例如，像是淘宝这样的购物网站，可能有商品服务，订单服务，用户服务，支付服务等等，每个服务都跑在单独的服务器上，这样可以更好地实现高可用，高并发，高扩展。</p>
+<p>当然，不用框架也完全可以做到微服务——我现在就用 python 写一个。</p>
+<pre><code class="language-python">from fastapi import FastAPI
+api = FastAPI()
+@api.get(&quot;/secret&quot;)
+def get_secret():
+    return &quot;You found my secret!&quot;
+if __name__ == &quot;__main__&quot;:
+    import uvicorn
+    uvicorn.run(api, host=&quot;0.0.0.0&quot;, port=8000)
+</code></pre>
+<pre><code class="language-python">from fastapi import FastAPI
+api = FastAPI()
+@api.get(&quot;/secret&quot;)
+def get_secret(password: str):
+    if password != &quot;123456&quot;:
+        return
+    import requests
+    return requests.get(&quot;http://localhost:8000/secret&quot;).text
+if __name__ == &quot;__main__&quot;:
+    import uvicorn
+    uvicorn.run(api, host=&quot;0.0.0.0&quot;, port=8001)
+</code></pre>
+<p>这样就实现了一个简单的微服务架构，一个服务提供密码验证，另一个服务提供秘密信息。</p>
+<p>当然，事情不可能这么简单，当系统开始 scale 之后，会有这样几个问题：</p>
+<ul>
+<li>服务注册与发现：不可能全部使用 ip 地址或者域名来访问服务，因为服务可能会动态变化，需要服务注册与发现。需要一个工具来统一处理服务请求并分发给对应的服务。</li>
+<li>服务调用：调用其它服务的时候，不可能总是从基础的 http 请求开始，需要一个工具来简化服务调用。</li>
+<li>负载均衡：如果我们已经把每个服务部署在多个服务器上，那么如果我们需要更大的 qps，一个自然的想法就是部署更多的同一个服务。但是，这样就会创建多个服务事例，例如服务 A1，服务 A2 都提供同一个服务，为了达到更大的 qps，我们应当将所有的请求均匀分发给 A1 和 A2。这就是负载均衡。</li>
+<li>服务熔断：如果一个服务出现问题，例如超时，那么我们应当停止向这个服务发送请求，而不是一直等待，并进行降级，即减少当前支持的功能，以避免雪崩，即服务集群中一个服务的故障，由于没有做好服务熔断，导致依赖这个服务的其它服务也出现故障，最终一层层向下，直到整个系统崩溃。</li>
+<li>服务网关：如果我们有多个服务，那么我们应当有一个统一的入口，这个入口可以做一些统一的处理，例如鉴权，限流，日志等等。</li>
+</ul>
+<p>Spring Cloud 就是为了解决这些问题而生的。不过，Spring Cloud 是一套又大又复杂的框架，现在也有公司在借助 k8s 加上容器技术实现微服务架构，这样可以不依赖于具体的语言和框架，而是可以自由选择。不过，Spring Cloud 依然是较为流行的微服务框架之一。</p>
+<p>今天我们先介绍服务注册与发现。</p>
+<h2 id="docker">配置 docker 网络</h2>
+<p>下文将使用 docker 部署 Consul，但是有个问题，在 macos 和 windows 上，docker本质上是运行在虚拟机上，因此不支持 host 网络模式。Consul 只能发现当前内网的服务，而我们的 java 是运行在宿主机上的。换言之，Consul 只能在 docker 运行的那个虚拟机上找服务，但这个虚拟机被隐藏了起来，不是和宿主机直通的。</p>
+<p>当然，如果是虚拟机而不是 docker，那么可以使用 host 网络模式，这样就可以让虚拟机和宿主机在同一个网络上。但是，尽管已经支持了 host 模式，但是在 macos 和 windows 上，docker 本质上还是运行在虚拟机上，因此无法使用 host 模式。准确地说，这个 host 是 mac 和 windows 上那个 docker linux 虚拟机的 host，而非 mac 和 windows 本身。</p>
+<p>当然你可以把 java 项目放到 docker 里面，如果在 windows 上，也可以打开 windows container 模式，或者用 linux 系统开发。</p>
+<p>一个更好的解决方案是使用 <a href="https://github.com/wenjunxiao/mac-docker-connector">docker-desktop-connector</a>。安装后按照文档配置即可。这样就可以让本机网络和 docker 虚拟机网络联通。又由于 Consul 是绑在虚拟机的 eth0 上的，因此我们可以在本机上连接到虚拟机的 eth0，从而访问 Consul。</p>
+<h2 id="consul">Consul 服务注册与发现</h2>
+<h3 id="consul_1">启动 Consul</h3>
+<p>首先，启动 Consul。为了方便开发，我们还一并创建一个数据库。</p>
+<p>数据库的 schema 如下：</p>
+<pre><code class="language-sql">DROP TABLE IF EXISTS payment;
+
+CREATE TABLE payment (
+   id SERIAL PRIMARY KEY,
+   payment_no VARCHAR(50) NOT NULL,
+   order_no VARCHAR(50) NOT NULL,
+   user_id INT DEFAULT 1,
+   amount DECIMAL(8,2) NOT NULL DEFAULT 9.9,
+   deleted BOOLEAN NOT NULL DEFAULT FALSE,
+   create_time TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   update_time TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+COMMENT ON TABLE payment IS '支付交易表';
+COMMENT ON COLUMN payment.payment_no IS '支付流水号';
+COMMENT ON COLUMN payment.order_no IS '订单流水号';
+COMMENT ON COLUMN payment.user_id IS '用户账号ID';
+COMMENT ON COLUMN payment.amount IS '交易金额';
+COMMENT ON COLUMN payment.deleted IS '删除标志，默认0不删除，1删除';
+COMMENT ON COLUMN payment.create_time IS '创建时间';
+COMMENT ON COLUMN payment.update_time IS '更新时间';
+</code></pre>
+<p>docker compose 文件如下：</p>
+<pre><code class="language-yaml">services:
+  postgres:
+    image: postgres:12.19
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: demo
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+       - 5432:5432
+  consul:
+    image: hashicorp/consul:1.19
+    ports:
+       - 8500:8500
+    volumes:
+      - ./consul:/consul/data
+</code></pre>
+<p>启动后，访问 <code>http://localhost:8500</code>，可以看到 Consul 的界面。</p>
+<p><img alt="Consul 界面" src="image.png" /></p>
+<p>注意，Consul 在 docker 容器关闭时是不会保存数据的。</p>
+<h3 id="_2">项目配置</h3>
+<p>利用我们上一章讲的 gradle，配置一个多模块项目。</p>
+<p>根项目使用，</p>
+<pre><code class="language-groovy">plugins {
+    id 'java'
+    id &quot;org.springframework.boot&quot; version &quot;3.2.6&quot;
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        set(&quot;springCloudVersion&quot;, &quot;2023.0.2&quot;)
+        set(&quot;springBootVersion&quot;, &quot;3.2.6&quot;)
+        set(&quot;lombokVersion&quot;, &quot;1.18.28&quot;)
+        set(&quot;springdocVersion&quot;, &quot;2.5.0&quot;)
+        set(&quot;postgresqlVersion&quot;, &quot;42.7.3&quot;)
+    }
+
+    group = 'io.github.fingerbone'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply {
+        plugin 'java'
+        plugin 'org.springframework.boot'
+        plugin 'io.spring.dependency-management'
+    }
+
+    java {
+        sourceCompatibility = JavaLanguageVersion.of(17)
+        targetCompatibility = JavaLanguageVersion.of(17)
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom &quot;org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}&quot;
+            mavenBom &quot;org.springframework.boot:spring-boot-starter-web:${springBootVersion}&quot;
+            mavenBom &quot;org.postgresql:postgresql:${postgresqlVersion}&quot;
+            mavenBom &quot;org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}&quot;
+        }
+    }
+
+    dependencies {
+        compileOnly &quot;org.projectlombok:lombok:${lombokVersion}&quot;
+        annotationProcessor &quot;org.projectlombok:lombok:${lombokVersion}&quot;
+    }
+}
+</code></pre>
+<p>注意，这里的 Spring Cloud 和 Spring Boot 版本必须匹配，否则会出现一些问题。兼容性表见 <a href="https://spring.io/projects/spring-cloud">Spring Cloud 文档</a>。</p>
+<p>为了方便，引入了 spring doc，加入 spring doc 后，可以访问<code>swagger-ui/index.html</code>来查看接口文档，并进行测试。</p>
+<p>此外，<code>org.springframework.cloud:spring-cloud-dependencies</code>是一个包，它包含了 Spring Cloud 的所有依赖，因此只要声明这个的版本，后续使用 Spring Cloud 的任何依赖都会使用这个版本。</p>
+<p>第一个子项目只是存放一些公用的类，例如 record，wrapper，enum 等等，不包含任何业务逻辑。目前 builder.gradle 可以留空。</p>
+<p>第二个子项目为支付服务，使用 Spring Data JPA 操作数据库，Spring Web 提供 RESTful API。</p>
+<pre><code class="language-groovy">dependencies {
+    implementation &quot;org.springdoc:springdoc-openapi-starter-webmvc-ui&quot;
+    implementation &quot;org.springframework.boot:spring-boot-starter-web&quot;
+    implementation &quot;org.postgresql:postgresql&quot;
+    implementation &quot;org.springframework.boot:spring-boot-starter-data-jpa&quot;
+    implementation project(&quot;:commons&quot;)
+}
+</code></pre>
+<p>微服务架构中，提供服务的服务称为服务提供者，调用服务的服务称为服务消费者。我们还要写一个下单服务，这个服务会调用支付服务。</p>
+<p>它的配置如下，</p>
+<pre><code class="language-groovy">dependencies {
+    implementation project(&quot;:commons&quot;)
+    implementation &quot;org.springframework.boot:spring-boot-starter-web&quot;
+    implementation &quot;org.springdoc:springdoc-openapi-starter-webmvc-ui&quot;
+}
+</code></pre>
+<p>在根项目 settings.gradle 下，使用</p>
+<pre><code class="language-groovy">rootProject.name = 'demo'
+include 'payment'
+include 'commons'
+include 'order'
+</code></pre>
+<p>这里 include 的是子项目的目录名，而不是项目名。后面使用 project 引入子项目时，使用的是项目名而非目录名。不过默认这两个是相同的。</p>
+<p>如果要改项目名，需要，</p>
+<pre><code class="language-groovy">include &quot;foo&quot;
+rootProject.name = &quot;bar&quot; 
+project(&quot;:foo&quot;).name = &quot;foofoo&quot;
+</code></pre>
+<p>如果你使用 maven，还要在子项目中添加父项目信息。</p>
+<h3 id="_3">支付服务业务逻辑</h3>
+<p>现在，暂时先不考虑微服务，我们先基于上面的数据库，写一点简单的业务逻辑。这里我们使用 Spring Data JPA 来操作数据库。</p>
+<p>注意，下面的 record 类，枚举等应当放在 commons 项目中，其它的应当放在 payment 项目中。</p>
+<pre><code class="language-java">package io.github.fingerbone.record;
+
+import java.math.BigDecimal;
+
+public record PaymentRecord(
+        Long id,
+        String paymentNo,
+        String orderNo,
+        Integer userId,
+        BigDecimal amount,
+        Boolean deleted
+) {
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone.entity;
+
+import io.github.fingerbone.record.PaymentRecord;
+import jakarta.persistence.*;
+import org.springframework.beans.BeanUtils;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+@Entity
+@Data
+public final class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = &quot;payment_no&quot;, nullable = false, length = 50)
+    private String paymentNo;
+
+    @Column(name = &quot;order_no&quot;, nullable = false, length = 50)
+    private String orderNo;
+
+    @Column(name = &quot;user_id&quot;, nullable = false)
+    private Integer userId = 1;
+
+    @Column(name = &quot;amount&quot;, nullable = false, precision = 8, scale = 2)
+    private BigDecimal amount = BigDecimal.valueOf(9.9);
+
+    @Column(name = &quot;deleted&quot;, nullable = false)
+    private Boolean deleted = false;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = &quot;create_time&quot;, nullable = false, updatable = false)
+    private Date createTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = &quot;update_time&quot;, nullable = false)
+    private Date updateTime;
+
+    @PrePersist
+    private void onCreate() {
+        createTime = new Date();
+        updateTime = new Date();
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        updateTime = new Date();
+    }
+
+    public PaymentRecord toRecord() {
+        return new PaymentRecord(
+                id,
+                paymentNo,
+                orderNo,
+                userId,
+                amount,
+                deleted
+        );
+    }
+
+    public static Payment fromRecord(PaymentRecord record) {
+        Payment payment = new Payment();
+        BeanUtils.copyProperties(record, payment);
+        return payment;
+    }
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone.repository;
+
+import io.github.fingerbone.entity.Payment;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PaymentRepository extends JpaRepository&lt;Payment, Long&gt; {
+
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone.service;
+
+import io.github.fingerbone.entity.Payment;
+import io.github.fingerbone.repository.PaymentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class PaymentService {
+    private final PaymentRepository paymentRepository;
+
+    public PaymentService(
+            @Autowired PaymentRepository paymentRepository
+    ) {
+        this.paymentRepository = paymentRepository;
+    }
+
+    public Payment createPayment(Payment payment) {
+        return paymentRepository.save(payment);
+    }
+
+    public Payment getPayment(Long id) {
+        return paymentRepository.findById(id).orElse(null);
+    }
+
+    public void deletePayment(Long id) {
+        Payment payment = paymentRepository.findById(id).orElse(null);
+        if (payment != null) {
+            payment.setDeleted(true);
+            paymentRepository.save(payment);
+        }
+    }
+
+    public Payment updatePayment(Payment payment) {
+        return paymentRepository.save(payment);
+    }
+
+    public List&lt;Payment&gt; getAllPayments() {
+        return paymentRepository.findAll();
+    }
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone.wrapper;
+
+public record ResponseWrapper&lt;T&gt;(Integer code, String message, Long time, T data) {
+
+    public static &lt;T&gt; ResponseWrapper&lt;T&gt; success(T data) {
+        return new ResponseWrapper&lt;&gt;(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage(), System.currentTimeMillis(), data);
+    }
+
+    public static &lt;Void&gt; ResponseWrapper&lt;Void&gt; success() {
+        return new ResponseWrapper&lt;&gt;(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage(), System.currentTimeMillis(),null);
+    }
+
+    public static &lt;T&gt; ResponseWrapper&lt;T&gt; error(ResponseCode responseCode, T data) {
+        return new ResponseWrapper&lt;&gt;(responseCode.getCode(), responseCode.getMessage(), System.currentTimeMillis(), data);
+    }
+
+    public static &lt;Void&gt; ResponseWrapper&lt;Void&gt; error(ResponseCode responseCode) {
+        return new ResponseWrapper&lt;&gt;(responseCode.getCode(), responseCode.getMessage(), System.currentTimeMillis(), null);
+    }
+
+    public static &lt;Void&gt; ResponseWrapper&lt;Void&gt; error() {
+        return new ResponseWrapper&lt;&gt;(ResponseCode.INTERNAL_SERVER_ERROR.getCode(), ResponseCode.INTERNAL_SERVER_ERROR.getMessage(), System.currentTimeMillis(), null);
+    }
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone.wrapper;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
+public enum ResponseCode {
+    SUCCESS(200, &quot;Success&quot;),
+    INTERNAL_SERVER_ERROR(500, &quot;Internal Server Error&quot;);
+
+    private final Integer code;
+    private final String message;
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone.wrapper;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class ExceptionWrapper {
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseWrapper&lt;String&gt; handleException(RuntimeException e) {
+        return ResponseWrapper.error(ResponseCode.INTERNAL_SERVER_ERROR, e.getMessage());
+    }
+
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone.controller;
+
+import io.github.fingerbone.entity.Payment;
+import io.github.fingerbone.record.PaymentRecord;
+import io.github.fingerbone.service.PaymentService;
+import io.github.fingerbone.wrapper.ResponseWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
+import java.util.stream.Collectors;
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/payment&quot;)
+public class PaymentController {
+    private final PaymentService paymentService;
+
+    public PaymentController(
+            @Autowired PaymentService paymentService
+    ) {
+        this.paymentService = paymentService;
+    }
+
+    @PostMapping
+    public ResponseWrapper&lt;PaymentRecord&gt; createPayment(@RequestBody PaymentRecord paymentRecord) {
+        return ResponseWrapper.success(
+                paymentService.createPayment(Payment.fromRecord(paymentRecord)).toRecord()
+        );
+    }
+
+    @GetMapping
+    public ResponseWrapper&lt;List&lt;PaymentRecord&gt;&gt; getAllPayments() {
+        return ResponseWrapper.success(
+                paymentService.getAllPayments().stream().map(Payment::toRecord).collect(Collectors.toList())
+        );
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseWrapper&lt;PaymentRecord&gt; getPayment(@PathVariable Long id) {
+        return ResponseWrapper.success(
+                paymentService.getPayment(id).toRecord()
+        );
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseWrapper&lt;Void&gt; deletePayment(@PathVariable Long id) {
+        paymentService.deletePayment(id);
+        return ResponseWrapper.success();
+    }
+
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseWrapper&lt;PaymentRecord&gt; updatePayment(@PathVariable Long id, @RequestBody PaymentRecord paymentRecord) {
+        Payment payment = Payment.fromRecord(paymentRecord);
+        payment.setId(id);
+        return ResponseWrapper.success(
+                paymentService.updatePayment(payment).toRecord()
+        );
+    }
+
+}
+</code></pre>
+<p>这些都不难，都是简单的增删改查。</p>
+<h3 id="_4">下单服务业务逻辑</h3>
+<p>在 python 中，调用另一个 http 服务很简单，只需要使用 requests 即可。但是在 java 中，我们需要使用 RestTemplate 来调用。</p>
+<pre><code class="language-java">package io.github.fingerbone;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+public class RestTemplateConfig {
+    @Bean
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+</code></pre>
+<pre><code class="language-java">package io.github.fingerbone;
+
+
+import io.github.fingerbone.record.PaymentRecord;
+import io.github.fingerbone.wrapper.ResponseWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/consumer/payment&quot;)
+public class ConsumerPaymentController {
+    private final RestTemplate restTemplate;
+    private static final String paymentServiceUrl = &quot;http://localhost:8080&quot; + &quot;/payment&quot;;
+
+    @Autowired
+    public ConsumerPaymentController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @PostMapping
+    public ResponseWrapper&lt;PaymentRecord&gt; createPayment(@RequestBody PaymentRecord paymentRecord) {
+        HttpEntity&lt;PaymentRecord&gt; request = new HttpEntity&lt;&gt;(paymentRecord);
+        ResponseEntity&lt;ResponseWrapper&lt;PaymentRecord&gt;&gt; response = restTemplate.exchange(
+                paymentServiceUrl,
+                HttpMethod.POST,
+                request,
+                new ParameterizedTypeReference&lt;&gt;() {
+                }
+        );
+        return response.getBody();
+    }
+
+    @GetMapping
+    public ResponseWrapper&lt;List&lt;PaymentRecord&gt;&gt; getAllPayments() {
+        ResponseEntity&lt;ResponseWrapper&lt;List&lt;PaymentRecord&gt;&gt;&gt; response = restTemplate.exchange(
+                paymentServiceUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference&lt;&gt;() {
+                }
+        );
+        return response.getBody();
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseWrapper&lt;PaymentRecord&gt; getPayment(@PathVariable Long id) {
+        ResponseEntity&lt;ResponseWrapper&lt;PaymentRecord&gt;&gt; response = restTemplate.exchange(
+                paymentServiceUrl + &quot;/&quot; + id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference&lt;&gt;() {
+                }
+        );
+        return response.getBody();
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseWrapper&lt;Void&gt; deletePayment(@PathVariable Long id) {
+        restTemplate.delete(paymentServiceUrl + &quot;/&quot; + id);
+        return ResponseWrapper.success();
+    }
+
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseWrapper&lt;PaymentRecord&gt; updatePayment(@PathVariable Long id, @RequestBody PaymentRecord paymentRecord) {
+        restTemplate.put(paymentServiceUrl + &quot;/&quot; + id, paymentRecord);
+        return ResponseWrapper.success();
+    }
+}
+</code></pre>
+<p>当然，记得要改第二个项目的端口，否则会冲突。</p>
+<p>这样，我们便有了微服务的雏形。但是，现在的项目本质上和我们之前 python 的小 demo 没有什么区别，只是多了一些 java 特色的 boilerplate 代码。</p>
+<h3 id="_5">服务注册与发现</h3>
+<p>现在，我们引入服务注册与发现机制。</p>
+<p>但是讲实际知识之前，我们先讲 Spring Cloud 的文档怎么看，比如这里我们想使用 Consul。</p>
+<p><img alt="Spring Cloud页面" src="image-1.png" /></p>
+<p>先从左侧选择 Spring Cloud Consul，选择 Learn，然后选择 Reference Documentation。之后你会找到你需要的一切知识。</p>
+<p>在左侧切换到服务发现，这与我们接下来要介绍的内容完全一致。不过我们的更精简。</p>
+<p>不过，有时候 Spring 的文档并不是最新的，如果某些依赖有 GitHub 主页，一般能在 GitHub 上找到最新的文档。</p>
+<p>首先，我们需要引入 Spring Cloud Consul 的依赖。</p>
+<pre><code class="language-groovy">dependencies {
+    implementation &quot;org.springframework.cloud:spring-cloud-starter-consul-discovery&quot;
+}
+</code></pre>
+<p>然后改 application.yml，默认配置如下，</p>
+<pre><code class="language-yaml">spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+    discovery:
+      service-name: ${spring.application.name}
+</code></pre>
+<p>可以不写，因为这是默认配置。如果需要改变，可以在这里改。这里配置了 consul 的地址。此外服务名也可以改。</p>
+<p>然后，在主启动类，添加<code>@EnableDiscoveryClient</code>启用服务发现。Spring Boot 其实是会自动给你加上的，但是为了明确，我们还是手动写上。</p>
+<pre><code class="language-java">package io.github.fingerbone;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main8081 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main8081.class, args);
+    }
+}
+</code></pre>
+<p>此外，由于 Consul 需要检查服务的可用性，因此需要健康检查和心跳检查。这里我们使用 actuator 来提供这些信息。</p>
+<pre><code class="language-groovy">dependencies {
+    implementation &quot;org.springframework.boot:spring-boot-starter-actuator&quot;
+}
+</code></pre>
+<p>然后，我们可以在 Consul 的界面上看到我们的服务。</p>
+<p><img alt="Consul 服务注册" src="image-2.png" /></p>
+<p>但是，如果我们使用域名或 IP 地址通信，是不会经过 Consul 的。这样也做不了负载均衡，熔断等等。</p>
+<p>Consul 会把服务名注册到 DNS 服务器上，我们可以通过服务名来访问服务。但是，这个 DNS 服务器是 Consul 自己的，我们需要使用 Consul 的 DNS 服务器。</p>
+<p>具体而言，我们首先要把 RestTemplate 配置换成，</p>
+<pre><code class="language-java">@Configuration
+public class RestTemplateConfig {
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+</code></pre>
+<p>这里的<code>@LoadBalanced</code>是使用负载均衡器。使用负载均衡器时，发送的请求会先经过服务注册中心，然后再分发给对应的服务。</p>
+<p><code>@LoadBalanced</code>只是一个接口，由于我们还没有引入负载均衡器，因此此时并没进行负载均衡。这里加上这个的目的是为了使用服务名来访问服务。</p>
+<p>然后把网址改成 Consul 上的服务名，我这里是<code>private static final String paymentServiceUrl = "http://payment-service" + "/payment";</code>。</p>
+<p>这样，我们就可以通过服务名来访问服务了。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

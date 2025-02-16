@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://finger-bone.github.io/micro-service-crashcourse/23/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>k8s 有状态服务 - 微服务速成笔记</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/color-brewer.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">微服务速成笔记</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring Cloud 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01/" class="dropdown-item">回到 Spring</a>
+</li>
+                                    
+<li>
+    <a href="../02/" class="dropdown-item">回到 Java</a>
+</li>
+                                    
+<li>
+    <a href="../03/" class="dropdown-item">Consul 作为服务注册中心</a>
+</li>
+                                    
+<li>
+    <a href="../04/" class="dropdown-item">Consul 作为配置中心</a>
+</li>
+                                    
+<li>
+    <a href="../05/" class="dropdown-item">LoadBalancer</a>
+</li>
+                                    
+<li>
+    <a href="../06/" class="dropdown-item">Http Interface Client 与 OpenFeign</a>
+</li>
+                                    
+<li>
+    <a href="../07/" class="dropdown-item">Resilience4j 服务熔断和降级</a>
+</li>
+                                    
+<li>
+    <a href="../08/" class="dropdown-item">Resilience4j 限流</a>
+</li>
+                                    
+<li>
+    <a href="../09/" class="dropdown-item">Micrometer 监控</a>
+</li>
+                                    
+<li>
+    <a href="../10/" class="dropdown-item">Spring Gateway 网关</a>
+</li>
+                                    
+<li>
+    <a href="../11/" class="dropdown-item">Seata 分布式事务</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Spring 进阶内容 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../12/" class="dropdown-item">Reactor 框架</a>
+</li>
+                                    
+<li>
+    <a href="../13/" class="dropdown-item">Spring WebFlux</a>
+</li>
+                                    
+<li>
+    <a href="../14/" class="dropdown-item">Spring Security</a>
+</li>
+                                    
+<li>
+    <a href="../15/" class="dropdown-item">Spring Security OAuth2 认证以及 KeyCloak 用户服务</a>
+</li>
+                                    
+<li>
+    <a href="../16/" class="dropdown-item">Rabbit MQ 消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../17/" class="dropdown-item">GraphQL</a>
+</li>
+                                    
+<li>
+    <a href="../18/" class="dropdown-item">gRPC</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">k8s 微服务技术 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../19/" class="dropdown-item">后端框架一览</a>
+</li>
+                                    
+<li>
+    <a href="../20/" class="dropdown-item">k8s 无状态服务基本部署</a>
+</li>
+                                    
+<li>
+    <a href="../21/" class="dropdown-item">helm 打包 istio 网关与 k8s 命令行工具</a>
+</li>
+                                    
+<li>
+    <a href="../22/" class="dropdown-item">k8s 无状态服务</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">k8s 有状态服务</a>
+</li>
+                                    
+<li>
+    <a href="../24/" class="dropdown-item">服务网格</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">中间件补充 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../25/" class="dropdown-item">Nacos 服务治理</a>
+</li>
+                                    
+<li>
+    <a href="../26/" class="dropdown-item">Sentinel</a>
+</li>
+                                    
+<li>
+    <a href="../27/" class="dropdown-item">kafka 高性能消息队列</a>
+</li>
+                                    
+<li>
+    <a href="../28/" class="dropdown-item">Redis</a>
+</li>
+                                    
+<li>
+    <a href="../29/" class="dropdown-item">OTel-LGTM</a>
+</li>
+                                    
+<li>
+    <a href="../30/" class="dropdown-item">Dubbo RPC</a>
+</li>
+                                    
+<li>
+    <a href="../31.md" class="dropdown-item">Nginx</a>
+</li>
+                                    
+<li>
+    <a href="../32.md" class="dropdown-item">Treafik</a>
+</li>
+                                    
+<li>
+    <a href="../33.md" class="dropdown-item">Citus</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../22/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../24/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#ch23-k8s" class="nav-link">微服务速成 Ch23 k8s 有状态服务</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">有状态对象</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#k8s" class="nav-link">有状态服务 k8s 部署</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">有状态服务外部部署</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="ch23-k8s">微服务速成 Ch23 k8s 有状态服务</h1>
+<p>前面我们讲解了无状态服务的部署。但是，现实中大部分的服务都是有状态的，例如数据库，需要持久化的消息队列，以及需要持久化的缓存等等。这些服务的部署和管理都有一些特殊的要求。</p>
+<p>在 k8s 中，可以使用有状态组件 StatefulSet 来部署有状态服务。StatefulSet 与 Deployment 类似，但是有一些不同之处。</p>
+<p>但是，实际上，在生产环境中一般会把有状态服务部署在专门的数据库集群中，而不是直接部署在 k8s 中。这样可以更好的管理数据库的备份，恢复，以及数据的持久化。两种方法各有优劣，具体情况具体分析，我们都会讲解。</p>
+<h2 id="_1">有状态对象</h2>
+<p>k8s 中有状态对象主要有以下几个。</p>
+<h3 id="statefulset">StatefulSet</h3>
+<p>StatefulSet 是有状态服务的部署对象。StatefulSet 与 Deployment 类似，但是有一些不同之处。</p>
+<ul>
+<li>StatefulSet 会为每个 Pod 分配一个唯一的标识符，这个标识符会随着 Pod 的重启而保持不变。</li>
+<li>StatefulSet 会按照顺序启动和关闭 Pod，这样可以保证 Pod 的启动和关闭顺序。</li>
+</ul>
+<p>这两条特性，使得每一个 Pod 都有一个唯一的标识符，可以用来做一些特殊的操作，例如数据迁移，数据备份等等，因此可以支援有状态服务的部署。</p>
+<p>要创建一个 StatefulSet，通常需要一个 Headless Service 作为网络入口，以及一个 PersistentVolume 作为数据持久化，并给 Pod 带上对应的 PersistentVolumeClaim。</p>
+<h3 id="persistentvolume-persistentvolumeclaim">PersistentVolume 与 PersistentVolumeClaim</h3>
+<p>前面我们讲过，StatefulSet 自己本身只是给每个 Pod 分配一个唯一的标识符，但是并不会保证数据的持久化。数据的持久化需要使用 PersistentVolume 与 PersistentVolumeClaim。</p>
+<p>PersistentVolume 是一个独立于 Pod 的存储卷，可以用来存储数据。PersistentVolumeClaim 是一个声明，用来请求 PersistentVolume。如果每一个 Pod 都有唯一的 PersistentVolumeClaim，那么每一个 Pod 都有自己的独立的存储卷。这样，就可以保证每一个 Pod 的数据是独立的，实现了有状态服务的部署。</p>
+<p>例如，如果一个集群中有两个数据库，而我们希望向外提供一个数据库集群服务，并使用分片技术增加并发数（分片是指将数据分散到多个数据库中，类似于磁盘阵列的 RAID 0），那么我们可以使用 StatefulSet 部署两个数据库，每一个数据库都有自己的 PersistentVolumeClaim，然后使用一个网关将请求分发到这两个数据库中。</p>
+<p>为了进一步提高并发数，我们可以部署一个 Redis 来缓存某条数据在哪一个数据库中。但是，一旦任何一个数据库发生故障，如果使用 Deployment 模式，即使使用了正确的持久化技术，重启的 Pod 也会有不同的标识符，这样 Redis 就会失效。因此，在这个例子中，我们需要使用 StatefulSet，来确保每个 Pod 在重启前后有相同的网络标识与数据。</p>
+<p>消息队列也是同样的道理，例如工作在扇出模式的消息队列，每一个 Pod 都有自己的队列。此时需要一个独立的持久化存储，以及一个独立的网络标识，来保证重启前后数据的一致性。</p>
+<h3 id="headless-service">Headless Service</h3>
+<p>Headless 是一种特殊的 Service。前面我们讲过，Service 有四种模式，而 Headless Service 是一种特殊的 ClusterIP Service，它的 ClusterIP 是 None。Headless Service 会为每一个 Pod 分配一个 DNS 记录，这样可以通过 DNS 记录访问每一个 Pod。这样，我们可以通过 DNS 记录访问每一个 Pod，而不需要通过 Service 访问。</p>
+<h2 id="k8s">有状态服务 k8s 部署</h2>
+<p>要在 k8s 集群中部署有状态服务，这里我们简单地使用两个 nginx，它们提供的网页将会不同。我们将使用 StatefulSet 来部署这两个 nginx，以及一个 Headless Service 来访问这两个 nginx。</p>
+<h3 id="persistentvolume">创建 PersistentVolume</h3>
+<p>首先，我们需要创建若干 PersistentVolume。我们只会部署两个 PostgresQL，因此我们只需要两个 PersistentVolume。</p>
+<p>此外，前面我们没有提过，一个文件中可以通过<code>---</code>分隔符分隔多个对象。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: html-pv-0
+spec:
+  storageClassName: html
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/html-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: html-pv-1
+spec:
+  storageClassName: html
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data/html-1
+</code></pre>
+<p>这里的 Capacity 即容量，而 AccessModes 是访问模式。这里我们使用 ReadWriteOnce，又称 RWO，即可读可写，但只能被一个 Pod 挂载。其它模式有 ReadOnlyMany（ROX），只读但可以被多个 Pod 挂载，以及 ReadWriteMany（RWX），可读可写，可以被多个 Pod 挂载。RWX 需要手动保持数据一致性。</p>
+<p>hostPath 是指将这个 volume 存储在本机的某个路径下，这是在使用 manual 存储类时的一种方式。但是在生产环境中，要么将这个 hostPath 映射到一个网络存储中，要么使用网络存储类。</p>
+<p>这里的 storageClassName 是后面将要创建的 PersistentVolumeClaim 用来匹配的字段。</p>
+<p>如果你使用了 helm，还可以使用模版来执行循环，来创建多个 PersistentVolume，这里不再赘述。</p>
+<h3 id="persistentvolumeclaim">创建 PersistentVolumeClaim</h3>
+<p>然后需要创建 PersistentClaim，PersistentClaim 像是 Persistent Volume 的钥匙，用来请求 Persistent Volume。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc
+spec:
+  storageClassName: html
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 16Ki
+</code></pre>
+<p>这里的 storageClassName 是 PersistentVolume 的 storageClassName，accessModes 是访问模式，resources 是资源请求，这里我们请求 16Ki 的存储。</p>
+<p>这里我们创建了一个 storageClassName 为 html 的 PersistentVolumeClaim，这个 PersistentVolumeClaim 会请求一个 storageClassName 为 html 的 PersistentVolume。</p>
+<p>如果我们现在把它绑到一个 Pod 上，这个 Pod 就会申请一个同样 storageClassName 为 html 的 PersistentVolume，这个 PersistentVolume 会被绑定到这个 Pod 上。</p>
+<p>但是，注意，现在的 Pod 如果重启，或有新的 Pod 在水平扩展中产生，这个 PersistentVolume 会被重新绑定到新的 Pod 上，这样数据就会丢失，同一网络地址的数据一致性丢失。因此需要使用 StatefulSet 来保证数据的一致性。</p>
+<h3 id="statefulset_1">创建 StatefulSet</h3>
+<p>现在我们创建 StatefulSet。如果你不熟悉 nginx 的 docker container，这里是一个友善的提醒：nginx 的默认网页是<code>/usr/share/nginx/html</code>，因此我们需要将 PersistentVolume 挂载到这个路径下。</p>
+<p>Stateful 和 Deployment 相似处我们不再赘述。</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: html-stateful-set
+spec:
+  serviceName: &quot;html-service&quot;
+  replicas: 2
+  selector:
+    matchLabels:
+      app: html-pod
+  template:
+    metadata:
+      labels:
+        app: html-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - name: html-pvc
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: html-pvc
+    spec:
+      accessModes: [ &quot;ReadWriteOnce&quot; ]
+      storageClassName: html
+      resources:
+        requests:
+          storage: 16Ki
+</code></pre>
+<p>这里我们创建了一个 StatefulSet，名字为 html-statefulset，这个 StatefulSet 会创建两个 Pod，每一个 Pod 都会挂载一个 PersistentVolumeClaim，这个 PersistentVolumeClaim 会请求一个 PersistentVolume。</p>
+<p>注意，因为 StatefulSet 需要逐个 Pod 访问，因此必须使用无头服务来访问这两个 Pod，因此需要指定服务名 serviceName 为 html-service。</p>
+<p>挂载 volume 时，name 和 volumeClaimTemplates 的 name 需要匹配即可。</p>
+<h3 id="headless-service_1">创建 Headless Service</h3>
+<p>最后，我们创建一个 Headless Service，用来访问这两个 Pod。Headless Service 会为每一个 Pod 分配一个 DNS 记录，这样我们可以通过 DNS 记录访问每一个 Pod。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: html-service
+spec:
+  clusterIP: None
+  selector:
+    app: html-pod
+</code></pre>
+<p>这里我们创建了一个 Headless Service，名字为 html-headless，这个 Headless Service 会为每一个 Pod 分配一个 DNS 记录，这样我们可以通过 DNS 记录访问每一个 Pod。</p>
+<h3 id="_2">外部访问</h3>
+<p>在启动服务前，我们先进入<code>minikube ssh</code>，然后在前面指定的 hostPath 创建两个内容不同的<code>index.html</code>。注意，这时候容器内没有文本编辑器，使用 echo 命令来创建文件。如果你之前已经启动了，使用<code>kubectl delete all --all</code>删除所有资源。此外，你还需要用 sudo 提权。</p>
+<pre><code class="language-bash">echo &quot;&lt;h1&gt;html-0&lt;/h1&gt;&quot; | sudo tee ./index.html
+</code></pre>
+<p>然后，我们启动服务。</p>
+<pre><code class="language-bash">kubectl apply -f .
+</code></pre>
+<p>现在我们需要单独访问 Pod。当处于 Headless 模式时，Service 会在 DNS 记录每个 Pod 的 IP 地址。我们可以使用<code>kubectl get pods -o wide</code>来查看 Pod 的 IP 地址。</p>
+<pre><code class="language-bash">kubectl get pods -o wide
+</code></pre>
+<p>现在我们可以进入集群，直接访问 Pod 的 IP 地址。可以发现它们正确地返回了不同的网页。</p>
+<p>但是，如果是在写后端服务，我们不可能使用 IP 地址来访问。之前我们可以直接使用 Service 名称作为 DNS 记录来访问，现在也一样，可以用特殊的网络地址来访问这两个 Pod，即<code>{stateful-set-name}-{ordinal}.{service-name}</code>。在这个例子中，就是<code>html-stateful-set-0.html-service</code>和<code>html-stateful-set-1.html-service</code>。</p>
+<pre><code class="language-bash">curl http://html-stateful-set-0.html-service
+</code></pre>
+<p>注意，要进入任意一个在集群中的容器，可以使用<code>kubectl exec -it {pod-name} -- /bin/bash</code>。这样才会通过集群的 DNS 记录来访问。</p>
+<h2 id="_3">有状态服务外部部署</h2>
+<p>在上面的例子中，我们介绍了如何用 k8s 部署有状态服务。但是，实际上，大部分有状态服务都是部署在专门的数据库集群中，而不是直接部署在 k8s 中。</p>
+<p>使用 k8s 部署有状态服务的优点是，可以使用 k8s 的自动化部署，自动化扩展，以及自动化恢复。但是，缺点是，k8s 并不是一个专门的数据库集群，因此在数据的备份，恢复，以及数据的持久化上，可能会有一些问题。此外，k8s 的容器化也会带来 IO 性能的损失，而有状态服务大多是 IO 密集型的服务。</p>
+<p>因此，还有一种解决方案，在 k8s 外部部署有状态服务，然后 k8s 集群内容器去访问这个有状态服务。这样，就可以充分利用 k8s 的自动化部署，自动化扩展，以及自动化恢复，同时又可以使用专门的数据库集群来管理数据。k8s 内部的服务就是纯粹的无状态服务，只需要访问外部的有状态服务。</p>
+<h3 id="_4">有状态服务外部部署</h3>
+<p>首先我们在外部部署一个 nginx，然后在 k8s 集群中访问这个 nginx。</p>
+<p>首先，我们在外部部署一个 nginx。</p>
+<pre><code class="language-bash">docker run -d --name nginx -p 8080:80 nginx
+</code></pre>
+<p>注意，这里的外部是相对集群的外部，即<code>minikube ssh</code>进入的虚拟机。k8s 集群和 minikube 的虚拟机是在一个网络中的，但宿主机和虚拟机在 MacOS 和 Windows 上是不同的网络，因此不能直接访问。在生产环境中，使用 linux 系统，没有虚拟机，k8s 可以直连宿主机。</p>
+<p>然后，我们在 k8s 集群中访问这个 nginx。我们之前没有讲过的 ExternalName 就能用上了。它能把 k8s 集群外的服务映射到 k8s 集群内的服务。因为我们的 nginx 是运行在<code>localhost:8080</code>，我们可以使用 ExternalName 来映射这个服务。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: ext
+spec:
+  type: ExternalName
+  externalName: localhost
+  ports:
+  - port: 80
+</code></pre>
+<p>现在，使用<code>curl http://ext</code>就可以访问到外部的 nginx 了。如果要访问其它的服务，也是同理。</p>
+<p>但是，有时候我们的外部服务是 IP，这种时候要使用  Endpoints。Endpoints 其实是 Service 的后端，Service 的 Selector 其实是基于选择的 Pod 创建了一个 Endpoints，然后再创建 Service。</p>
+<p>要手动创建 Endpoints，使用下面的配置文件，</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ext
+subsets:
+  - addresses:
+      - ip: 172.0.0.1
+    ports:
+      - port: 80
+</code></pre>
+<p>然后是 Headless，注意我们不要写 selector，Service 的名字要与 Endpoint 的名字一致。</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: Service
+metadata:
+  name: ext
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+</code></pre>
+<p>然后直接访问服务即可，效果是一样的。</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
