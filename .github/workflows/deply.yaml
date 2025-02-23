@@ -1,40 +1,33 @@
-name: Deploy Documentation
+name: Docusaurus Deployment
+
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main  # Trigger the deployment when there's a push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
 
-      - name: Install Dependencies
-        run: |
-          pip install mkdocs==1.5.3 mkdocs-bootswatch==1.1
+    - name: Install dependencies
+      run: |
+        bun install
 
-      - name: Build Docs
-        run: |
-          mkdocs build --verbose
+    - name: Build Docusaurus site
+      run: |
+        bun run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
-          keep_files: false
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: './build'
+        publish_branch: 'gh-pages'
