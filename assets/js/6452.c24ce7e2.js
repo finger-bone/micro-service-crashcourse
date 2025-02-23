@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknotes_template=self.webpackChunknotes_template||[]).push([[6452],{4071:(e,t,s)=>{s.d(t,{createPacketServices:()=>a.$});var a=s(1609);s(9369)}}]);

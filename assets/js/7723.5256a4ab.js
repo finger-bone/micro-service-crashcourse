@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknotes_template=self.webpackChunknotes_template||[]).push([[7723],{7723:(e,t,s)=>{s.d(t,{createPieServices:()=>a.f});var a=s(8685);s(9369)}}]);
