@@ -59,4 +59,3 @@
 - [Nginx](notes/31.md)
 - [Treafik](notes/32.md)
 - [Citus](notes/33.md)
-
